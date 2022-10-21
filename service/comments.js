@@ -2,10 +2,8 @@ const CommentsRepository = require("../repository/comments");
 
 class CommentsService {
   commentsRepository = new CommentsRepository();
-
-  createComment = async (postId, commentNum, userId, comment, level) => {
-    console.log(postId, commentNum, userId, comment, level);
-    await this.commentsRepository.createComment(postId, commentNum, userId, comment, level);
+  createComment = async (postId, userId, comment, level) => {
+    await this.commentsRepository.createComment(postId, userId, comment, level);
     return;
   };
 

@@ -17,7 +17,6 @@ module.exports = (req, res, next) => {
 
     Members.findByPk(userId).then((user) => {
       res.locals.user = user;
-      console.log("test: ", user);
       next();
     });
   } catch (err) {
