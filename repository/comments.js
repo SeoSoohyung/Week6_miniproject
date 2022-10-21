@@ -1,18 +1,18 @@
 const { Comments } = require("../models");
 
 class CommentsRepository {
-  createComment = async (postId, userId, comment, level) => {
-    await Comments.create({ postId, userId, comment, level });
+  createComment = async (postId, commentNum, userId, comment, level) => {
+    await Comments.create({ postId, commentNum, userId, comment, level });
     return;
   };
 
-  updateComment = async (level, comment) => {
-    await Comments.update({ level, comment }, { where: { level, comment } });
+  updateComment = async (comment, level, commentId) => {
+    await Comments.update({ level, comment }, { where: { commentId } });
     return;
   };
 
-  deleteComment = async (commentId) => {
-    await Comments.destroy({ where: { commentId } });
+  deleteComment = async ( postId, commentId, userId ) => {
+    await Comments.destroy({ where: { postId, commentId, userId } });
     return;
   };
 }
