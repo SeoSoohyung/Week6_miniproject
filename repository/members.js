@@ -11,11 +11,10 @@ class MembersRepository {
     return createMembersData;
   };
 
-  findMember = async (id) => {
-    const member = await Members.findOne({ where: { id } });
+  findMember = async (userId) => {
+    const member = await Members.findOne({ where: { userId } });
     return member;
   };
-
 
   updateMember = async (userId, nickname, password) => {
     const updateMember = await Members.update(
@@ -28,7 +27,6 @@ class MembersRepository {
     await Members.destroy({ where: { userId } });
     return;
   };
-
 }
 
 module.exports = MembersRepository;

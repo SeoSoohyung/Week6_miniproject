@@ -12,9 +12,9 @@ class MembersController {
 
   LoginMember = async (req, res, next) => {
     try {
-      const { id, password } = req.body;
+      const { userId, password } = req.body;
       const LoginMemberData = await this.membersService.findMember(
-        id,
+        userId,
         password
       );
       res.status(200).json({ data: LoginMemberData });

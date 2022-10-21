@@ -13,25 +13,25 @@ class MembersService {
     return createMembersData;
   };
 
-  findMember = async (id, password) => {
-    const member = await this.membersRepository.findMember(id);
+  findMember = async (userId, password) => {
+    const member = await this.membersRepository.findMember(userId);
     if (!member || password !== member.password) {
-      throw new Error("닉네임 또는 비밀번호가 일치하지 않습니다.")      
+      throw new Error("닉네임 또는 비밀번호가 일치하지 않습니다.");
     }
     return { token: jwt.sign({ userId: member.userId }, "week6-mini-project") };
   };
 
-  updateMember = async(userId, nickname, password) => {
-    await this.membersRepository.updateMember(userId, nickname,password)
-    await this.membersRepository.findMember(userId)
-    return      
-  }
+  updateMember = async (userId, nickname, password) => {
+    await this.membersRepository.updateMember(userId, nickname, password);
+    await this.membersRepository.findMember(userId);
+    return;
+  };
 
-  deleteMember = async(userId) => {
-    console.log(userId)
+  deleteMember = async (userId) => {
+    console.log(userId);
     await this.membersRepository.deleteMember(userId);
-    return
-  }
+    return;
+  };
 }
 
 module.exports = MembersService;
