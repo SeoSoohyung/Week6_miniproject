@@ -7,12 +7,12 @@ class PostsController {
     try {
       const { categoryId } = req.params;
       const { title, content } = req.body;
-      const { id, nickname } = res.locals.user;
+      const { userId, nickname } = res.locals.user;
       await this.postsService.createPost(
         categoryId,
         title,
         content,
-        id,
+        userId,
         nickname
       );
       res.status(201).send("게시글이 생성되었습니다");
@@ -35,13 +35,13 @@ class PostsController {
     try {
       const { categoryId, postId } = req.params;
       const { title, content } = req.body;
-      const { id } = res.locals.user;
+      const { userId } = res.locals.user;
       await this.postsService.updatePost(
         categoryId,
         postId,
         title,
         content,
-        id
+        userId
       );
       res.status(200).send("게시글을 수정하였습니다");
     } catch (err) {
@@ -52,8 +52,8 @@ class PostsController {
   deletePost = async (req, res, next) => {
     try {
       const { categoryId, postId } = req.params;
-      const { id } = res.locals.user;
-      await this.postsService.deletePost(categoryId, postId, id);
+      const { userId } = res.locals.user;
+      await this.postsService.deletePost(categoryId, postId, userId);
       res.status(201).send("게시글을 삭제하였습니다");
     } catch (err) {
       res.status(400).send("게시글 삭제에 실패하였습니다");

@@ -36,8 +36,8 @@ class PostsService {
     return;
   };
 
-  deletePost = async (categoryId, postId, id) => {
-    await this.postsRepository.deletePost(categoryId, postId, id);
+  deletePost = async (categoryId, postId, userId) => {
+    await this.postsRepository.deletePost(categoryId, postId, userId);
   };
   return;
 }
