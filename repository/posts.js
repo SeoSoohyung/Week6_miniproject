@@ -5,6 +5,11 @@ class PostsRepository {
     await Posts.create({ categoryId, title, content, userId, nickname });
     return;
   };
+
+  findAllPost = async (categoryId) => {
+    const findAllPost = await Posts.findOne({ where: { categoryId } });
+    return findAllPost;
+  };
 }
 
 module.exports = PostsRepository;

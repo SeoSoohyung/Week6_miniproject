@@ -7,7 +7,6 @@ class PostsController {
     const { categoryId } = req.params;
     const { title, content } = req.body;
     const { id, nickname } = res.locals.user;
-    console.log(id);
     await this.postsService.createPost(
       categoryId,
       title,
@@ -17,6 +16,12 @@ class PostsController {
     );
 
     res.status(201).send("게시글이 생성되었습니다");
+  };
+
+  findAllPost = async (req, res, next) => {
+    const { categoryId } = req.params;
+    const findAllPost = await this.postsService.findAllPost(categoryId);
+    res.status(200).json({ findAllPost });
   };
 }
 

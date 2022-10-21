@@ -13,6 +13,11 @@ class PostsService {
     );
     return;
   };
+
+  findAllPost = async (categoryId) => {
+    const findAllPost = await this.postsRepository.findAllPost(categoryId);
+    return findAllPost;
+  };
 }
 
 module.exports = PostsService;
