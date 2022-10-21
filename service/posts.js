@@ -41,13 +41,13 @@ class PostsService {
     }
   };
 
-  updatePost = async (categoryId, postId, title, content, id) => {
+  updatePost = async (categoryId, postId, title, content, userId) => {
     await this.postsRepository.updatepost(
       categoryId,
       postId,
       title,
       content,
-      id
+      userId
     );
     return;
   };

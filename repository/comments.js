@@ -11,8 +11,8 @@ class CommentsRepository {
     return findComment;
   };
 
-  updateComment = async (level, comment) => {
-    await Comments.update({ level, comment }, { where: { level, comment } });
+  updateComment = async (userId, comment, commentId) => {
+    await Comments.update({ comment }, { where: { userId, commentId } });
     return;
   };
 

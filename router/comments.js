@@ -10,11 +10,7 @@ router.post(
   authMiddleware,
   commentsController.createComment
 );
-router.patch(
-  "/:categoryId/:postId/:commentNum",
-  authMiddleware,
-  commentsController.updateComment
-);
+router.put("/:commentId", authMiddleware, commentsController.updateComment);
 router.delete(
   "/:categoryId/:postId/:commentNum",
   authMiddleware,

@@ -7,8 +7,8 @@ class CommentsService {
     return;
   };
 
-  updateComment = async () => {
-    const updateMember = await this.commentsRepository.updateMember();
+  updateComment = async (userId, comment, commentId) => {
+    await this.commentsRepository.updateComment(userId, comment, commentId);
     return;
   };
 

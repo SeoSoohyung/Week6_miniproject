@@ -12,16 +12,10 @@ class CommentsController {
 
   updateComment = async (req, res, next) => {
     try {
-      const { comment, level } = req.body;
+      const { comment } = req.body;
       const { userId } = res.locals.user;
-      const { postId, commentNum } = req.params;
-      await this.commentsService.updateComment({
-        postId,
-        commentNum,
-        userId,
-        comment,
-        level,
-      });
+      const { commentId } = req.params;
+      await this.commentsService.updateComment(userId, comment, commentId);
       res.status(201).send("message : 댓글이 수정되었습니다.");
     } catch (error) {
       res.status(400).send("message : error");
