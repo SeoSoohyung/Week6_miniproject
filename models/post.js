@@ -14,16 +14,36 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Posts.init({
-    postId: {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    userId:DataTypes.INTEGER,    
-    nickname: DataTypes.STRING,
-    title: DataTypes.STRING,
-    content: DataTypes.STRING,
-    likes: DataTypes.INTEGER,  
-
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    nickname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
   }, {
     sequelize,
     modelName: 'Posts',

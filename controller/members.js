@@ -8,7 +8,6 @@ class MembersController {
     try {
       const { userId, nickname, password, confirm } = req.body;
 
-      await schema.validateAsync(req.body);
       await this.membersService.createMember(
         userId,
         nickname,
