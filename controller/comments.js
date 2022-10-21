@@ -12,10 +12,10 @@ class CommentsController {
 
   updateComment = async (req, res, next) => {
     try {
-      const { comment, level } = req.body;
+      const { comment } = req.body;
       const { userId } = res.locals.user;
-      const { postId, commentNum, commentId } = req.params;
-      await this.commentsService.updateComment( { postId, commentNum, userId, comment, level, commentId } );
+      const { commentId } = req.params;
+      await this.commentsService.updateComment( userId, comment, commentId );
       res.status(201).send("message : 댓글이 수정되었습니다.");
     } catch (error) {
       res.status(400).send("message : error");
@@ -25,13 +25,8 @@ class CommentsController {
   deleteComment = async (req, res, next) => {
     try {
       const { userId } = res.locals.user;
-      const { postId, commentId } = req.params;
-
-      await this.commentsService.deleteComment({
-        postId,
-        commentId,
-        userId
-      });
+      const { commentId } = req.params;
+      await this.commentsService.deleteComment( commentId, userId );
       res.status(201).send("message : 댓글이 삭제되었습니다.");
     } catch (error) {
       res.status(400).send("message : error");

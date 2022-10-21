@@ -31,6 +31,19 @@ class PostsController {
     }
   };
 
+  findOnePost = async (req, res, next) => {
+    try {
+      const { categoryId, postId } = req.params;
+      const findOnePOst = await this.postsService.findOnePost(
+        categoryId,
+        postId
+      );
+      res.status(200).json({ findOnePOst });
+    } catch (err) {
+      res.status(400).json({ message: "게시글 조회에 실패했습니다" });
+    }
+  };
+
   updatePost = async (req, res, next) => {
     try {
       const { categoryId, postId } = req.params;

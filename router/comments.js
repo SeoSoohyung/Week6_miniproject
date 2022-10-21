@@ -6,7 +6,9 @@ const authMiddleware = require("../middlewares/auth-middleware");
 
 router.post("/:postId", authMiddleware, commentsController.createComment);
 router.post("/:postId/:commentNum",authMiddleware,commentsController.createComment);
-router.patch("/:postId/:commentId/:commentNum",authMiddleware,commentsController.updateComment);
-router.delete("/:postId/:commentNum",authMiddleware,commentsController.deleteComment);
+
+router.put("/:commentId",authMiddleware,commentsController.updateComment);
+
+router.delete("/:commentId",authMiddleware,commentsController.deleteComment);
 
 module.exports = router;

@@ -7,13 +7,13 @@ class CommentsService {
     return;
   };
 
-  updateComment = async ( postId, commentNum, userId, comment, level, commentId ) => {
-    await this.commentsRepository.updateComment( postId, commentNum, userId, comment, level, commentId );
+  updateComment = async ( userId, comment, commentId ) => {
+    await this.commentsRepository.updateComment( userId, comment, commentId );
     return;
   };
 
-  deleteComment = async ( postId, commentId, userId ) => {
-    await this.commentsRepository.deleteComment(postId, commentId, userId);
+  deleteComment = async ( commentId, userId ) => {
+    await this.commentsRepository.deleteComment( commentId, userId);
     return;
   };
 }
