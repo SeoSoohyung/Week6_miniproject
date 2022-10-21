@@ -2,8 +2,12 @@ const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
   createPost = async (categoryId, title, content, userId, nickname) => {
-    await Posts.create({ categoryId, title, content, userId, nickname });
-    return;
+    try {
+      await Posts.create({ categoryId, title, content, userId, nickname });
+      return;
+    } catch (err) {
+      throw new Error("게시글 생성에 실패했습니다");
+    }
   };
 
   findAllPost = async (categoryId) => {
@@ -17,7 +21,7 @@ class PostsRepository {
 
   findOnePost = async (categoryId, postId) => {
     try {
-      const post = await Posts.findOne({ where: { categoryId, postId } });
+      const post = await Posts.findOne({ where: { categoryId } });
       return post;
     } catch (err) {
       throw new Error("게시글 조회에 실패했습니다");
