@@ -18,6 +18,22 @@ class PostsService {
     const findAllPost = await this.postsRepository.findAllPost(categoryId);
     return findAllPost;
   };
+
+  updatePost = async (categoryId, postId, title, content, id) => {
+    await this.postsRepository.updatepost(
+      categoryId,
+      postId,
+      title,
+      content,
+      id
+    );
+    return;
+  };
+
+  deletePost = async (categoryId, postId, id) => {
+    await this.postsRepository.deletePost(categoryId, postId, id);
+  };
+  return;
 }
 
 module.exports = PostsService;
