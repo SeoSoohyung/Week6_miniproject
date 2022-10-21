@@ -16,6 +16,7 @@ class MembersRepository {
     return member;
   };
 
+
   updateMember = async (id, nickname, password) => {
     const updateMember = await Members.update(
       { nickname, password },
@@ -27,6 +28,7 @@ class MembersRepository {
     await Members.destroy({ where: { id } });
     return;
   };
+
 }
 
 module.exports = MembersRepository;
