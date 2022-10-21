@@ -15,9 +15,9 @@ class PostsController {
         userId,
         nickname
       );
-      res.status(201).send("게시글이 생성되었습니다");
+      res.status(201).json({ message: "게시글이 생성되었습니다" });
     } catch (err) {
-      res.status(400).send("게시글 생성에 실패하였습니다");
+      res.status(400).json({ message: "게시글 생성에 실패하였습니다" });
     }
   };
 
@@ -27,7 +27,7 @@ class PostsController {
       const findAllPost = await this.postsService.findAllPost(categoryId);
       res.status(200).json({ findAllPost });
     } catch (err) {
-      res.status(400).send("게시글을 불러오지 못했습니다");
+      res.status(400).json({ message: "게시글을 불러오지 못했습니다" });
     }
   };
 
