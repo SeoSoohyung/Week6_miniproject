@@ -15,10 +15,10 @@ module.exports = (req, res, next) => {
   try {
     const { userId } = jwt.verify(authToken, SECRETKEY);
 
-    Members.findOne({ where: { userId } }).then((user) => {
+    Members.findByPk(userId).then((user) => {
       res.locals.user = user;
+      console.log("test: ", user);
       next();
-
     });
   } catch (err) {
     res.status(401).send({ errorMessage: "로그인이 필요합니다." });
