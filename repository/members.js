@@ -2,13 +2,18 @@ const { Members } = require("../models");
 
 class MembersRepository {
   createMember = async (userId, nickname, password) => {
-    const createUserData = await this.Members.create({
+    const createMembersData = await Members.create({
       userId,
       nickname,
       password,
     });
 
-    return createUserData;
+    return createMembersData;
+  };
+
+  findMember = async (userId) => {
+    const member = await Members.findOne({ where: { userId } });
+    return member;
   };
 }
 
