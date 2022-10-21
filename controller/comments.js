@@ -33,7 +33,6 @@ class CommentsController {
 
   deleteComment = async (req, res, next) => {
     try {
-      const { level } = req.body;
       const { userId } = res.locals.user;
       const { postId, commentId, categoryId } =req.params;
       await this.commentsService.deleteComment({
@@ -44,8 +43,7 @@ class CommentsController {
       res.status(400).send("message : error");
     }
   }
-
-  }
+}
 
 
 module.exports = CommentsController;

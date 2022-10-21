@@ -18,8 +18,8 @@ class CommentsRepository {
     return;
   };
 
-  deleteComment = async (level, comment) => {
-    await Comments.destroy({ where: {level, comment} });
+  deleteComment = async (commentId) => {
+    await Comments.destroy({ where: { commentId } });
     return;
   };
 }
