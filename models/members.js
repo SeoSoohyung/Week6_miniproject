@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Members.init({
-    id: {
+      userId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      userId: {
+      id: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,

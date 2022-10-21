@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Comments.init({
-    id: {
+    commentId: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },    
-    commentId: {
+    commentNum: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
