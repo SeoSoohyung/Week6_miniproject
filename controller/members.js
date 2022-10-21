@@ -14,6 +14,7 @@ class MembersController {
   LoginMember = async (req, res, next) => {
     try {
       const { id, password } = req.body;
+
       const LoginMemberData = await this.membersService.findMember(
         id,
         password

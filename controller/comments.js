@@ -4,26 +4,27 @@ class CommentsController {
   commentsService = new CommentsService();
 
   createComment = async (req, res, next) => {
-  try {
+  // try {
     const { comment, level } = req.body;
     const { userId } = res.locals.user;
-    const { postId, commentId, categoryId } =req.params;
+    const { postId, commentNum, categoryId } =req.params;
     await this.commentsService.createComment({
-      postId, commentId, userId, comment, level, categoryId
+      postId, commentNum, userId, comment, level, categoryId
     });
-    res.status(201).send("message : 댓글을 작성하였습니다.");
-  } catch (error) {
-    res.status(400).send("message : error");
-  }
+
+    res.status(201).send("message : 댓글이 수정되었습니다.")
+  // } catch (error) {
+  //   res.status(400).send("message : error");
+  // }
   }
 
   updateComment = async (req, res, next) => {
     try {
       const { comment, level } = req.body;
       const { userId } = res.locals.user;
-      const { postId, commentId, categoryId } =req.params;
+      const { postId, commentNum } =req.params;
       await this.commentsService.updateComment({
-        postId, commentId, userId, comment, level, categoryId
+        postId, commentNum, userId, comment, level
       });
       res.status(201).send("message : 댓글이 수정되었습니다.")
     } catch (error) {
@@ -34,7 +35,8 @@ class CommentsController {
   deleteComment = async (req, res, next) => {
     try {
       const { userId } = res.locals.user;
-      const { postId, commentId, categoryId } =req.params;
+      const { postId, commentNum, categoryId } =req.params;
+
       await this.commentsService.deleteComment({
         postId, commentId, userId, level, categoryId
       });
