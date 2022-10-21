@@ -13,14 +13,35 @@ class MembersController {
   LoginMember = async (req, res, next) => {
     try {
       const { userId, password } = req.body;
-
       const LoginMemberData = await this.membersService.findMember(
         userId,
         password
       );
       res.status(200).json({ data: LoginMemberData });
-    } catch (e) {res.status(400).json({message: e.message})
+    } catch (e) {
+      res.status(400).json({ message: e.message });
+    }
   };
-}
+
+  updateMember = async (req, res, next) => {
+    const { nickname, password, confirm } = req.body;
+    const { id } = res.locals.user;
+    const UpdateMember = await this.membersService.updateMember(
+      id,
+      nickname,
+      password,
+      confirm
+    );
+    res
+      .status(200)
+      .json({ data: UpdateMember, message: "수정을 완료하였습니다." });
+  };
+
+  deleteMember = async (req, res, next) => {
+    const { id } = res.locals.user;
+    await this.membersService.deleteMember(id);
+
+    res.status(200).json({ message: "삭제를 완료하였습니다." });
+  };
 }
 module.exports = MembersController;
