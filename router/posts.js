@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const PostsController = require("../controller/posts.controller");
+const PostsController = require("../controller/posts");
 const postsController = new PostsController();
+const authMiddleware = require("../middlewares/auth-middleware");
 
-router.post("/", postsController.createPost);
+router.post("/:categoryId", authMiddleware, postsController.createPost);
 
 module.exports = router;

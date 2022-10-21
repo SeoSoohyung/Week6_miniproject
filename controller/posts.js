@@ -4,13 +4,15 @@ class PostsController {
   postsService = new PostsService();
 
   createPost = async (req, res, next) => {
-    const { categoryId, title, content, userId, nickname } = req.body;
-
+    const { categoryId } = req.params;
+    const { title, content } = req.body;
+    const { id, nickname } = res.locals.user;
+    console.log(id);
     await this.postsService.createPost(
       categoryId,
       title,
       content,
-      userId,
+      id,
       nickname
     );
 
