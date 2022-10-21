@@ -20,6 +20,17 @@ class MembersService {
     }
     return { token: jwt.sign({ userId: member.userId }, "week6-mini-project") };
   };
+
+  updateMember = async(id, nickname, password) => {
+    await this.membersRepository.updateMember(id, nickname,password)
+    await this.membersRepository.findMember(id)
+    return      
+  }
+
+  deleteMember = async(id) => {
+    await this.membersRepository.deleteMember(id);
+    return
+  }
 }
 
 module.exports = MembersService;

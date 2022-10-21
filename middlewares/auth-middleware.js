@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
 
   try {
     const { userId } = jwt.verify(authToken, SECRETKEY);
-    Members.findByPk(userId).then((user) => {
+    Members.findOne({where:{userId}}).then((user) => {
     res.locals.user = user;
     next();
     });
