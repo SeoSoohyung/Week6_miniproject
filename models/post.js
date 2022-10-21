@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Posts.init({
-    id: {
+    postId: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
