@@ -10,7 +10,6 @@ class MembersRepository {
 
     return createUserData;
   };
-
 }
 
 module.exports = MembersRepository;
