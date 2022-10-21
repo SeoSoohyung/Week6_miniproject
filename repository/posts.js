@@ -15,9 +15,9 @@ class PostsRepository {
     }
   };
 
-  findOnePost = async (postId) => {
+  findOnePost = async (categoryId, postId) => {
     try {
-      const post = await Posts.findOne({ where: { id: postId } });
+      const post = await Posts.findOne({ where: { categoryId, postId } });
       return post;
     } catch (err) {
       throw new Error("게시글 조회에 실패했습니다");
