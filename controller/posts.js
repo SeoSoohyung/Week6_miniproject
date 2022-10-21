@@ -31,6 +31,12 @@ class PostsController {
     }
   };
 
+  findOnePost = async (req, res, next) => {
+    const { categoryId, postId } = req.params;
+    const findOnePOst = await this.postsService.findOnePost(categoryId, postId);
+    res.status(200).json({ findOnePOst });
+  };
+
   updatePost = async (req, res, next) => {
     try {
       const { categoryId, postId } = req.params;

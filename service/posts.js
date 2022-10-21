@@ -20,10 +20,18 @@ class PostsService {
     return findAllPost;
   };
 
-  // findOnePost = async (postId) => {
-  //   const findOnePost = await this.postsRepository.findOnePost(postId);
-
-  // };
+  findOnePost = async (categoryId, postId) => {
+    const findOnePost = await this.postsRepository.findOnePost(
+      categoryId,
+      postId
+    );
+    const findAllComment = await this.commentsRepository.findComment(postId);
+    const result = {
+      findOnePost,
+      findAllComment,
+    };
+    return result;
+  };
 
   updatePost = async (categoryId, postId, title, content, id) => {
     await this.postsRepository.updatepost(
