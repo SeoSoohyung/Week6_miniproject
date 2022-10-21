@@ -11,8 +11,8 @@ class MembersRepository {
     return createMembersData;
   };
 
-  findMember = async (userId) => {
-    const member = await Members.findOne({ where: { userId } });
+  findMember = async (id) => {
+    const member = await Members.findOne({ where: { id } });
     return member;
   };
 

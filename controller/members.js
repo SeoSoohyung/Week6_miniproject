@@ -4,19 +4,18 @@ class MembersController {
   membersService = new MembersService();
 
   SignupMember = async (req, res, next) => {
-    
-      const { id, nickname, password, confirm } = req.body;
+    const { id, nickname, password, confirm } = req.body;
 
-      await this.membersService.createMember(id, nickname, password, confirm);
-      res.status(201).json({ message: "회원가입이 완료되었습니다." });    
-      res.status(400).json({ message: e.message });    
+    await this.membersService.createMember(id, nickname, password, confirm);
+    res.status(201).json({ message: "회원가입이 완료되었습니다." });
+    res.status(400).json({ message: e.message });
   };
 
   LoginMember = async (req, res, next) => {
     try {
-      const { userId, password } = req.body;
+      const { id, password } = req.body;
       const LoginMemberData = await this.membersService.findMember(
-        userId,
+        id,
         password
       );
       res.status(200).json({ data: LoginMemberData });
@@ -25,7 +24,7 @@ class MembersController {
     }
   };
 
-  updateMember = async (req, res, next) => {    
+  updateMember = async (req, res, next) => {
     const { nickname, password, confirm } = req.body;
     const { userId } = res.locals.user;
     const UpdateMember = await this.membersService.updateMember(
