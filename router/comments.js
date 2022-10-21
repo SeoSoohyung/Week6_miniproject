@@ -17,4 +17,13 @@ router.delete(
   commentsController.deleteComment
 );
 
+router.post("/:postId", authMiddleware, commentsController.createComment);
+router.post(
+  "/:postId/:commentNum",
+  authMiddleware,
+  commentsController.createComment
+);
+router.put("/:commentId", authMiddleware, commentsController.updateComment);
+router.delete("/:commentId", authMiddleware, commentsController.deleteComment);
+
 module.exports = router;
