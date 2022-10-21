@@ -28,6 +28,7 @@ class MembersService {
   }
 
   deleteMember = async(id) => {
+    console.log(id)
     await this.membersRepository.deleteMember(id);
     return
   }
