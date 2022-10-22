@@ -7,12 +7,11 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/posts/{categoryId}": {
       "post": {
+        "tags": ["posts"],
         "description": "",
         "parameters": [
           {
@@ -34,6 +33,7 @@
         }
       },
       "get": {
+        "tags": ["posts"],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -41,11 +41,13 @@
     },
     "/posts/{categoryId}/{postId}": {
       "get": {
+        "tags": ["posts"],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "patch": {
+        "tags": ["posts"],
         "description": "",
         "parameters": [
           {
@@ -73,6 +75,7 @@
         }
       },
       "delete": {
+        "tags": ["posts"],
         "description": "",
         "parameters": [
           {
@@ -102,6 +105,7 @@
     },
     "/members/signup": {
       "post": {
+        "tags": ["members"],
         "description": "",
         "parameters": [],
         "responses": {}
@@ -109,11 +113,13 @@
     },
     "/members/login": {
       "post": {
+        "tags": ["members"],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "patch": {
+        "tags": ["members"],
         "description": "",
         "parameters": [
           {
@@ -129,6 +135,7 @@
         }
       },
       "delete": {
+        "tags": ["members"],
         "description": "",
         "parameters": [
           {
@@ -146,6 +153,7 @@
     },
     "/comments/{postId}": {
       "post": {
+        "tags": ["comments"],
         "description": "",
         "parameters": [
           {
@@ -169,6 +177,7 @@
     },
     "/comments/{postId}/{commentNum}": {
       "post": {
+        "tags": ["comments"],
         "description": "",
         "parameters": [
           {
@@ -198,6 +207,7 @@
     },
     "/comments/{commentId}": {
       "put": {
+        "tags": ["comments"],
         "description": "",
         "parameters": [
           {
@@ -219,6 +229,7 @@
         }
       },
       "delete": {
+        "tags": ["comments"],
         "description": "",
         "parameters": [
           {
