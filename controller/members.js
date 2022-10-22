@@ -38,6 +38,7 @@ class MembersController {
   };
 
   updateMember = async (req, res, next) => {
+
     try {      
       const { userId } = res.locals.user;
       const { nickname, password, confirm } = req.body;

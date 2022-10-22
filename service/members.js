@@ -27,6 +27,7 @@ class MembersService {
     return createMembersData;
   };
 
+
   findMember = async (id, password) => {
     const member = await this.membersRepository.findMember(id);
     const validPassword = await bcrypt.compare(password, member.password);
@@ -38,10 +39,11 @@ class MembersService {
 
   updateMember = async (userId, nickname, password) => {
     const existsNickname = await this.membersRepository.findMember(nickname);
-    if (existsNickname.length !== 0) {
+    if (existsNickname) {
       throw { message: "닉네임이 이미 존재합니다" };
     }
     await this.membersRepository.updateMember(userId, nickname, password);
+
     return;
   };
 

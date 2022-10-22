@@ -2,19 +2,18 @@ const CommentsRepository = require("../repository/comments");
 
 class CommentsService {
   commentsRepository = new CommentsRepository();
-
-  createComment = async () => {
-    const updateMember = await this.commentsRepository.updateMember();
-    return updateMember;
-  };
-
-  updateComment = async () => {
-    const updateMember = await this.commentsRepository.updateMember();
+  createComment = async (postId, commentNum, userId, comment, level) => {
+    await this.commentsRepository.createComment(postId, commentNum, userId, comment, level);
     return;
   };
 
-  deleteComment = async () => {
-    await this.commentsRepository.deleteMember();
+  updateComment = async ( userId, comment, commentId ) => {
+    await this.commentsRepository.updateComment( userId, comment, commentId );
+    return;
+  };
+
+  deleteComment = async ( commentId, userId ) => {
+    await this.commentsRepository.deleteComment( commentId, userId);
     return;
   };
 }
