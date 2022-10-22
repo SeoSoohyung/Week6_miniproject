@@ -11,226 +11,358 @@
   "paths": {
     "/posts/{categoryId}": {
       "post": {
-        "tags": ["posts"],
-        "description": "",
+        "description": "게시글 생성",
         "parameters": [
           {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "title": "title",
+              "content": "content"
+            }
           }
         ],
         "responses": {
+          "201": {
+            "description": "게시글이 성공적으로 생성되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       },
       "get": {
-        "tags": ["posts"],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "description": "게시글 조회",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "title": "title",
+              "content": "content"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "게시글이 성공적으로 생성되었습니다."
+          },
+          "401": {
+            "description": "..."
+          }
+        }
       }
     },
     "/posts/{categoryId}/{postId}": {
       "get": {
-        "tags": ["posts"],
-        "description": "",
+        "description": "게시글 상세 조회",
         "parameters": [],
         "responses": {}
       },
       "patch": {
-        "tags": ["posts"],
-        "description": "",
+        "description": "게시글 수정",
         "parameters": [
           {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "title": "title",
+              "content": "content"
+            }
           }
         ],
         "responses": {
+          "201": {
+            "description": "게시글이 성공적으로 수정되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       },
       "delete": {
-        "tags": ["posts"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
+        "description": "게시글 삭제",
+        "parameters": [],
         "responses": {
+          "201": {
+            "description": "게시글이 성공적으로 삭제되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       }
     },
     "/members/signup": {
       "post": {
-        "tags": ["members"],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "description": "회원가입",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "nickname": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "confirm": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "id": "아이디",
+              "nickname": "닉네임",
+              "password": "비밀번호",
+              "confirm": "비밀번호 확인"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "회원가입 성공"
+          },
+          "401": {
+            "description": "..."
+          }
+        }
       }
     },
     "/members/login": {
       "post": {
-        "tags": ["members"],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "patch": {
-        "tags": ["members"],
-        "description": "",
+        "description": "로그인",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "id": "아이디",
+              "password": "비밀번호"
+            }
           }
         ],
         "responses": {
+          "200": {
+            "description": "token: ...."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "닉네임 또는 비밀번호가 틀립니다."
+          }
+        }
+      },
+
+      "patch": {
+        "description": "회원 정보 수정",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "confirm": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "id": "아이디",
+              "password": "비밀번호",
+              "confirm": "비밀번호 확인"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "성공적으로 수정되었습니다."
+          },
+          "401": {
+            "description": "..."
           }
         }
       },
       "delete": {
-        "tags": ["members"],
-        "description": "",
+        "description": "회원 탈퇴",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "userId": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
+          "201": {
+            "description": "성공적으로 탈퇴되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       }
     },
     "/comments/{postId}": {
       "post": {
-        "tags": ["comments"],
-        "description": "",
+        "description": "댓글 생성",
         "parameters": [
           {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "level": {
+                  "type": "integer"
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "level": "1",
+              "comment": "댓글"
+            }
           }
         ],
         "responses": {
+          "201": {
+            "description": "댓글이 성공적으로 생성되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       }
     },
     "/comments/{postId}/{commentNum}": {
       "post": {
-        "tags": ["comments"],
-        "description": "",
+        "description": "댓글 생성",
         "parameters": [
           {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "commentNum",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "level": {
+                  "type": "integer"
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "level": "1",
+              "comment": "댓글"
+            }
           }
         ],
         "responses": {
+          "201": {
+            "description": "댓글이 성공적으로 생성되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       }
     },
     "/comments/{commentId}": {
       "put": {
-        "tags": ["comments"],
-        "description": "",
+        "description": "댓글 수정",
         "parameters": [
           {
-            "name": "commentId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "comment": "댓글 수정"
+            }
           }
         ],
         "responses": {
+          "201": {
+            "description": "댓글이 성공적으로 수정되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       },
       "delete": {
-        "tags": ["comments"],
-        "description": "",
+        "description": "댓글 삭제",
         "parameters": [
           {
             "name": "commentId",
@@ -245,8 +377,11 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "댓글이 성공적으로 삭제되었습니다."
+          },
           "401": {
-            "description": "Unauthorized"
+            "description": "..."
           }
         }
       }

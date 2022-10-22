@@ -6,7 +6,7 @@ class MembersService {
   membersRepository = new MembersRepository();
 
   createMember = async (id, nickname, password) => {
-    const existsId = await this.membersRepository.findMember(id);    
+    const existsId = await this.membersRepository.findMember(id);
     if (existsId) {
       throw { message: "아이디가 이미 존재합니다" };
     }
@@ -15,7 +15,7 @@ class MembersService {
     );
     if (existsNickname) {
       throw { message: "닉네임이 이미 존재합니다." };
-    } 
+    }
     const salt = await bcrypt.genSalt(10);
     const enpryptedPW = bcrypt.hashSync(password, salt);
     password = enpryptedPW;
@@ -26,7 +26,6 @@ class MembersService {
     );
     return createMembersData;
   };
-
 
   findMember = async (id, password) => {
     const member = await this.membersRepository.findMember(id);

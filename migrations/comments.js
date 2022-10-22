@@ -8,10 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      postId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
+      // postId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: "Posts",
+      //     key: "postId",
+      //   },
+      //   onDelete: "CASCADE",
+      // },
       commentNum: {
         type: Sequelize.INTEGER,
         allowNull: true,
@@ -19,11 +23,6 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onDelete: "CASCADE",
-        references: {
-          model: "Members",
-          key: "userId",
-        },
       },
       comment: {
         type: Sequelize.STRING,

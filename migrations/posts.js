@@ -10,17 +10,12 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: {
-          model:"Members",
-          key:"userId",
-        },
-        onDelete: "CASCADE",
         allowNull: false,
-        onDelete: "CASCADE",
         references: {
           model: "Members",
           key: "userId",
         },
+        onDelete: "CASCADE",
       },
       categoryId: {
         type: Sequelize.INTEGER,
