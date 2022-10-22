@@ -38,15 +38,14 @@ class MembersController {
   };
 
   updateMember = async (req, res, next) => {
-
-    try {      
+    try {
       const { userId } = res.locals.user;
       const { nickname, password, confirm } = req.body;
       await schema.validateAsync(req.body);
       const UpdateMember = await this.membersService.updateMember(
         userId,
         nickname,
-        password,        
+        password,
         confirm
       );
       res

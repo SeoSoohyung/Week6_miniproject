@@ -1,6 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-const MembersService = require("../service/members");
 module.exports = (sequelize, DataTypes) => {
   class Members extends Model {
     /**
@@ -12,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       Members.hasMany(models.Posts, {
         foreignKey: "userId",
         onDelete: "CASCADE",
-      })
-
+      });
     }
   }
   Members.init(
