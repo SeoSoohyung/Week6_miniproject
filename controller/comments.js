@@ -3,17 +3,21 @@ const CommentsService = require("../service/comments");
 class CommentsController {
   commentsService = new CommentsService();
   createComment = async (req, res, next) => {
-    const { postId, commentNum } = req.params;
-    const { userId } = res.locals.user;
-    const { comment, level } = req.body;
-    await this.commentsService.createComment(
-      postId,
-      commentNum,
-      userId,
-      comment,
-      level
-    );
-    res.status(200).json({ message: "게시글 생성에 성공했습니다" });
+    try {
+      const { postId, commentNum } = req.params;
+      const { userId } = res.locals.user;
+      const { comment, level } = req.body;
+      await this.commentsService.createComment(
+        postId,
+        commentNum,
+        userId,
+        comment,
+        level
+      );
+      res.status(200).json(" message: 댓글 생성에 성공했습니다. ");
+    } catch (error) {
+      res.status(400).send("message : error");
+    }
   };
 
   updateComment = async (req, res, next) => {
