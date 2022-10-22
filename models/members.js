@@ -1,7 +1,6 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
+const MembersService = require("../service/members");
 module.exports = (sequelize, DataTypes) => {
   class Members extends Model {
     /**
@@ -14,9 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
         onDelete: "CASCADE",
       })
+
     }
-  };
-  Members.init({
+  }
+  Members.init(
+    {
       userId: {
         allowNull: false,
         autoIncrement: true,
@@ -44,10 +45,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
-    }, {
-    sequelize,
-    modelName: 'Members',
-  });
-  
+    },
+    {
+      sequelize,
+      modelName: "Members",
+    }
+  );
+
   return Members;
 };

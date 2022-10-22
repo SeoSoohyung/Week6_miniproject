@@ -28,11 +28,11 @@ class PostsRepository {
     }
   };
 
-  updatepost = async (categoryId, postId, title, content, id) => {
+  updatepost = async (categoryId, postId, title, content, userId) => {
     try {
       const updatePost = await Posts.update(
         { title, content },
-        { where: { categoryId, id: postId, userId: id } }
+        { where: { categoryId, postId, userId } }
       );
       return updatePost;
     } catch (err) {

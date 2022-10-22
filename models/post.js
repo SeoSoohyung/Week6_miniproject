@@ -1,8 +1,10 @@
+
 'use strict';
 const {
   Model
 } = require('sequelize');
 const posts = require('../migrations/posts');
+
 module.exports = (sequelize, DataTypes) => {
   class Posts extends Model {
     /**
@@ -11,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+
       Posts.belongsTo(models.Members,{
         foreignKey: "userId",
         onDelete: "CASCADE",
@@ -56,5 +59,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Posts',
   });
+
   return Posts;
 };
