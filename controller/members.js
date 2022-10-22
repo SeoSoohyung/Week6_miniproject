@@ -12,14 +12,14 @@ class MembersController {
   membersService = new MembersService();
 
   SignupMember = async (req, res, next) => {
-    // try {
-    const { id, nickname, password, confirm } = req.body;
-    await schema.validateAsync(req.body);
-    await this.membersService.createMember(id, nickname, password, confirm);
-    res.status(201).json({ message: "회원가입이 완료되었습니다." });
-    // } catch (e) {
-    //   res.status(400).json({ message: e.message });
-    // }
+    try {
+      const { id, nickname, password, confirm } = req.body;
+      await schema.validateAsync(req.body);
+      await this.membersService.createMember(id, nickname, password, confirm);
+      res.status(201).json({ message: "회원가입이 완료되었습니다." });
+    } catch (e) {
+      res.status(400).json({ message: e.message });
+    }
   };
 
   LoginMember = async (req, res, next) => {
