@@ -15,38 +15,11 @@
         "description": "게시글 생성",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "type": "string",
-            "schemes": {
-              "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "string"
-                }
-              }
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
             },
-            "example": {
-              "title": "title",
-              "content": "content"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "게시글이 성공적으로 생성되었습니다."
-          },
-          "401": {
-            "description": "..."
-          }
-        }
-      },
-      "get": {
-        "tags": ["posts"],
-        "description": "게시글 조회",
-        "parameters": [
           {
             "name": "body",
             "in": "body",
@@ -72,7 +45,27 @@
             "description": "게시글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "게시글 생성에 실패하였습니다"
+          }
+        }
+      },
+      "get": {
+        "tags": ["posts"],
+        "description": "게시글 조회",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+            }
+        ],
+        "responses": {
+          "201": {
+            "description": "게시글이 성공적으로 생성되었습니다."
+          },
+          "401": {
+            "description": "게시글을 불러오지 못했습니다"
           }
         }
       }
@@ -81,13 +74,45 @@
       "get": {
         "tags": ["posts"],
         "description": "게시글 상세 조회",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+            },
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "게시글 조회에 성공했습니다"
+          },
+          "401": {
+            "description": "게시글 조회에 실패했습니다"
+          }
+        }
       },
       "patch": {
         "tags": ["posts"],
         "description": "게시글 수정",
         "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+            },
+            {
+              "name": "postId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -113,20 +138,34 @@
             "description": "게시글이 성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "게시글 수정에 실패하였습니다"
           }
         }
       },
       "delete": {
         "tags": ["posts"],
         "description": "게시글 삭제",
-        "parameters": [],
+        "parameters": [
+          
+          {
+          "name": "categoryId",
+          "in": "path",
+          "required": true,
+          "type": "string"
+          },
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        }
+      ],
         "responses": {
           "201": {
             "description": "게시글이 성공적으로 삭제되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "게시글 삭제에 실패하였습니다."
           }
         }
       }
@@ -166,10 +205,10 @@
         ],
         "responses": {
           "201": {
-            "description": "회원가입 성공"
+            "description": "회원가입 성공하였습니다."
           },
           "401": {
-            "description": "..."
+            "description": "회원가입 실패하였습니다."
           }
         }
       }
@@ -242,7 +281,7 @@
             "description": "성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "수정에 실패하였습니다."
           }
         }
       },
@@ -251,16 +290,7 @@
         "description": "회원 탈퇴",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "type": "string",
-            "schemes": {
-              "properties": {
-                "userId": {
-                  "type": "string"
-                }
-              }
-            }
+            
           }
         ],
         "responses": {
@@ -268,7 +298,7 @@
             "description": "성공적으로 탈퇴되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "회원이 존재하지 않거나 탈퇴에 실패하였습니다."
           }
         }
       }
@@ -279,40 +309,11 @@
         "description": "댓글 생성",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "type": "string",
-            "schemes": {
-              "properties": {
-                "level": {
-                  "type": "integer"
-                },
-                "comment": {
-                  "type": "string"
-                }
-              }
-            },
-            "example": {
-              "level": "1",
-              "comment": "댓글"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "댓글이 성공적으로 생성되었습니다."
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
-          "401": {
-            "description": "..."
-          }
-        }
-      }
-    },
-    "/comments/{postId}/{commentNum}": {
-      "post": {
-        "tags": ["comments"],
-        "description": "댓글 생성",
-        "parameters": [
           {
             "name": "body",
             "in": "body",
@@ -338,7 +339,55 @@
             "description": "댓글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "댓글을 생성하는데 실패하였습니다."
+          }
+        }
+      }
+    },
+    "/comments/{postId}/{commentNum}": {
+      "post": {
+        "tags": ["comments"],
+        "description": "댓글 생성",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commentNum",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+
+          {  
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "level": {
+                  "type": "integer"
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "level": "1",
+              "comment": "댓글"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "댓글이 성공적으로 생성되었습니다."
+          },
+          "401": {
+            "description": "댓글을 생성하는데 실패하였습니다."
           }
         }
       }
@@ -348,6 +397,12 @@
         "tags": ["comments"],
         "description": "댓글 수정",
         "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -369,7 +424,7 @@
             "description": "댓글이 성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "댓글 수정에 실패하였습니다."
           }
         }
       },
@@ -382,11 +437,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -394,7 +444,7 @@
             "description": "댓글이 성공적으로 삭제되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "댓글 삭제에 실패하였습니다."
           }
         }
       }
