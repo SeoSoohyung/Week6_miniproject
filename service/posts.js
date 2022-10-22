@@ -4,9 +4,9 @@ const CommentsRepository = require("../repository/comments");
 class PostsService {
   postsRepository = new PostsRepository();
   commentsRepository = new CommentsRepository();
-  createPost = async (categoryId, title, content, userId, nickname) => {
+  createPost = async (name, title, content, userId, nickname) => {
     await this.postsRepository.createPost(
-      categoryId,
+      name,
       title,
       content,
       userId,
@@ -15,22 +15,22 @@ class PostsService {
     return;
   };
 
-  findAllPost = async (categoryId) => {
+  findAllPost = async () => {
     try {
-      const findAllPost = await this.postsRepository.findAllPost(categoryId);
+      const findAllPost = await this.postsRepository.findAllPost();
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
     }
   };
 
-  findOnePost = async (categoryId, postId) => {
+  findOnePost = async (postId, name) => {
     try {
-      const findOnePost = await this.postsRepository.findOnePost(
-        categoryId,
-        postId
+      const findOnePost = await this.postsRepository.findOnePost(postId, name);
+      const findAllComment = await this.commentsRepository.findComment(
+        postId,
+        name
       );
-      const findAllComment = await this.commentsRepository.findComment(postId);
       const result = {
         findOnePost,
         findAllComment,
@@ -41,21 +41,15 @@ class PostsService {
     }
   };
 
-  updatePost = async (categoryId, postId, title, content, userId) => {
-    await this.postsRepository.updatepost(
-      categoryId,
-      postId,
-      title,
-      content,
-      userId
-    );
+  updatePost = async (name, postId, title, content, userId) => {
+    await this.postsRepository.updatepost(name, postId, title, content, userId);
     return;
   };
 
-  deletePost = async (categoryId, postId, userId) => {
-    await this.postsRepository.deletePost(categoryId, postId, userId);
+  deletePost = async (name, postId, userId) => {
+    await this.postsRepository.deletePost(name, postId, userId);
+    return;
   };
-  return;
 }
 
 module.exports = PostsService;

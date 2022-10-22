@@ -1,38 +1,41 @@
 const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
-  createPost = async (categoryId, title, content, userId, nickname) => {
+  constructor() {
+    this.Posts = Posts;
+  }
+  createPost = async (name, title, content, userId, nickname) => {
     try {
-      await Posts.create({ categoryId, title, content, userId, nickname });
+      await this.Posts.create({ name, title, content, userId, nickname });
       return;
     } catch (err) {
       throw new Error("게시글 생성에 실패했습니다");
     }
   };
 
-  findAllPost = async (categoryId) => {
+  findAllPost = async () => {
     try {
-      const findAllPost = await Posts.findOne({ where: { categoryId } });
+      const findAllPost = await this.Posts.findAll();
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
     }
   };
 
-  findOnePost = async (categoryId, postId) => {
+  findOnePost = async (postId, name) => {
     try {
-      const post = await Posts.findOne({ where: { categoryId } });
+      const post = await this.Posts.findOne({ where: { postId, name } });
       return post;
     } catch (err) {
       throw new Error("게시글 조회에 실패했습니다");
     }
   };
 
-  updatepost = async (categoryId, postId, title, content, userId) => {
+  updatepost = async (name, postId, title, content, userId) => {
     try {
-      const updatePost = await Posts.update(
+      const updatePost = await this.Posts.update(
         { title, content },
-        { where: { categoryId, postId, userId } }
+        { where: { name, postId, userId } }
       );
       return updatePost;
     } catch (err) {
@@ -40,10 +43,10 @@ class PostsRepository {
     }
   };
 
-  deletePost = async (categoryId, postId, id) => {
+  deletePost = async (name, postId, userId) => {
     try {
-      await Posts.destroy({
-        where: { categoryId, id: postId, userId: id },
+      await this.Posts.destroy({
+        where: { name, postId, userId },
       });
       return;
     } catch (err) {

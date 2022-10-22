@@ -9,7 +9,7 @@
   "basePath": "/",
   "schemes": ["http"],
   "paths": {
-    "/posts/{categoryId}": {
+    "/posts": {
       "post": {
         "tags": ["posts"],
         "description": "게시글 생성",
@@ -25,12 +25,16 @@
                 },
                 "content": {
                   "type": "string"
+                },
+                "name": {
+                  "type": "string"
                 }
               }
             },
             "example": {
               "title": "title",
-              "content": "content"
+              "content": "content",
+              "name": "카테고리 유형"
             }
           }
         ],
@@ -62,27 +66,58 @@
               }
             },
             "example": {
-              "title": "title",
-              "content": "content"
+              "findAllPost": {
+                "postId": 1,
+                "name": "에러",
+                "nickname": "alstjq1826",
+                "title": "제목 입니다"
+              }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "게시글이 성공적으로 생성되었습니다."
-          },
           "401": {
-            "description": "..."
+            "description": "게시글 조회에 실패했습니다."
           }
         }
       }
     },
-    "/posts/{categoryId}/{postId}": {
+    "/posts/{postId}": {
       "get": {
         "tags": ["posts"],
         "description": "게시글 상세 조회",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "postId": 1,
+              "userId": 1,
+              "name": "카테고리 유형입니다",
+              "nickname": "alstjq1826",
+              "title": "제목 입니다",
+              "content": "내용 입니다",
+              "createdAt": "2022-10-22T13:20:56.000Z",
+              "updatedAt": "2022-10-22T13:20:56.000Z"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "게시글 상세조회에 실패했습니다"
+          }
+        }
       },
       "patch": {
         "tags": ["posts"],
@@ -103,8 +138,8 @@
               }
             },
             "example": {
-              "title": "title",
-              "content": "content"
+              "title": "제목 수정",
+              "content": "내용 수정"
             }
           }
         ],
@@ -113,7 +148,7 @@
             "description": "게시글이 성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "게시물 수정에 실패했습니다."
           }
         }
       },
@@ -126,7 +161,7 @@
             "description": "게시글이 성공적으로 삭제되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "게시글 삭제에 실패했습니다."
           }
         }
       }
