@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const posts = require('../migrations/posts');
 module.exports = (sequelize, DataTypes) => {
   class Posts extends Model {
     /**
@@ -10,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Posts.belongsTo(models.Members,{
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+      })
     }
   };
   Posts.init({
@@ -21,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER,      
       allowNull: false,
     },
     categoryId: {
