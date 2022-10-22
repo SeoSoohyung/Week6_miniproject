@@ -10,7 +10,7 @@
   "schemes": ["http"],
   "paths": {
     "/posts/{categoryId}": {
-      "post": {
+      "post": {   
         "tags": ["posts"],
         "description": "게시글 생성",
         "parameters": [
@@ -258,7 +258,7 @@
             "type": "string",
             "schemes": {
               "properties": {
-                "id": {
+                "nickname": {
                   "type": "string"
                 },
                 "password": {
