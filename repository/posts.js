@@ -1,6 +1,7 @@
 const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
+  
   createPost = async (categoryId, title, content, userId, nickname) => {
     try {
       await Posts.create({ categoryId, title, content, userId, nickname });
@@ -50,6 +51,7 @@ class PostsRepository {
       throw new Error("자신의 게시글이 맞는지 확인해 주세요");
     }
   };
+
 }
 
 module.exports = PostsRepository;
