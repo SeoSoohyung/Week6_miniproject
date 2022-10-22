@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Posts extends Model {
     /**
@@ -10,47 +8,53 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Posts.belongsTo(models.Members, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+      });
     }
-  };
-  Posts.init({
-    postId: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER,
+  }
+  Posts.init(
+    {
+      postId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    categoryId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    nickname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-  }, {
-    sequelize,
-    modelName: 'Posts',
-  });
+    {
+      sequelize,
+      modelName: "Posts",
+    }
+  );
   return Posts;
 };
