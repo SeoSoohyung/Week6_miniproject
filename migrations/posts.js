@@ -15,12 +15,7 @@ module.exports = {
           key:"userId",
         },
         onDelete: "CASCADE",
-        allowNull: false,
-        onDelete: "CASCADE",
-        references: {
-          model: "Members",
-          key: "userId",
-        },
+        allowNull: false,    
       },
       categoryId: {
         type: Sequelize.INTEGER,
