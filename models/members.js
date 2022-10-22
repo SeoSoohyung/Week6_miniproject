@@ -11,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Members.hasMany(models.Posts, {
         foreignKey: "userId",
-      });
-      Members.hasMany(models.Comments, {
-        foreignKey: "userId",
-      });
+        onDelete: "CASCADE",
+      })
+
     }
   }
   Members.init(
