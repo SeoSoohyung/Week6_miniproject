@@ -11,6 +11,7 @@
   "paths": {
     "/posts/{categoryId}": {
       "post": {
+        "tags": ["posts"],
         "description": "게시글 생성",
         "parameters": [
           {
@@ -43,6 +44,7 @@
         }
       },
       "get": {
+        "tags": ["posts"],
         "description": "게시글 조회",
         "parameters": [
           {
@@ -77,11 +79,13 @@
     },
     "/posts/{categoryId}/{postId}": {
       "get": {
+        "tags": ["posts"],
         "description": "게시글 상세 조회",
         "parameters": [],
         "responses": {}
       },
       "patch": {
+        "tags": ["posts"],
         "description": "게시글 수정",
         "parameters": [
           {
@@ -114,6 +118,7 @@
         }
       },
       "delete": {
+        "tags": ["posts"],
         "description": "게시글 삭제",
         "parameters": [],
         "responses": {
@@ -128,6 +133,7 @@
     },
     "/members/signup": {
       "post": {
+        "tags": ["members"],
         "description": "회원가입",
         "parameters": [
           {
@@ -170,6 +176,7 @@
     },
     "/members/login": {
       "post": {
+        "tags": ["members"],
         "description": "로그인",
         "parameters": [
           {
@@ -203,6 +210,7 @@
       },
 
       "patch": {
+        "tags": ["members"],
         "description": "회원 정보 수정",
         "parameters": [
           {
@@ -239,6 +247,7 @@
         }
       },
       "delete": {
+        "tags": ["members"],
         "description": "회원 탈퇴",
         "parameters": [
           {
@@ -266,6 +275,7 @@
     },
     "/comments/{postId}": {
       "post": {
+        "tags": ["comments"],
         "description": "댓글 생성",
         "parameters": [
           {
@@ -300,6 +310,7 @@
     },
     "/comments/{postId}/{commentNum}": {
       "post": {
+        "tags": ["comments"],
         "description": "댓글 생성",
         "parameters": [
           {
@@ -334,6 +345,7 @@
     },
     "/comments/{commentId}": {
       "put": {
+        "tags": ["comments"],
         "description": "댓글 수정",
         "parameters": [
           {
@@ -362,6 +374,7 @@
         }
       },
       "delete": {
+        "tags": ["comments"],
         "description": "댓글 삭제",
         "parameters": [
           {
