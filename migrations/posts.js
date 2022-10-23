@@ -17,8 +17,8 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
-      categoryId: {
-        type: Sequelize.INTEGER,
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       nickname: {
