@@ -9,8 +9,10 @@ const mockCommentsModel = () => ({
 
 describe("comments Repositories Layer Test", () => {
   let commentsRepository = new CommentsRepository();
-  commentsRepository.Comments = mockCommentsModel(); // commentsRepository.Comments => this.Comments = Comments 를 가르킴
+  commentsRepository.Comments = mockCommentsModel();
+   // commentsRepository.Comments => this.Comments = Comments 를 가르킴
   //원래 this.Comments = Comments를 해서 models의 데이터베이스의 값을 넣어줬는데 그값을 mockCommentsModel()을 할당함 mockCommentsModel()는 가짜 models임
+  
   beforeEach(() => {
     // 모든 Mock을 초기화합니다.
     jest.resetAllMocks();
@@ -56,7 +58,7 @@ describe("comments Repositories Layer Test", () => {
       level: 1,
     };
 
-    const createCommentSchema = {
+    const createCommentResult = {
       postId: 1,
       commentNum: 1,
       userId: 1,
@@ -65,7 +67,7 @@ describe("comments Repositories Layer Test", () => {
     };
 
     commentsRepository.Comments.create = jest.fn(() => {
-      return createCommentSchema;
+      return createCommentResult;
     });
 
     const createComment = await commentsRepository.createComment(
@@ -75,8 +77,11 @@ describe("comments Repositories Layer Test", () => {
     // console.log(createCommentSchema);
     // console.log(createCommentInsert);
     // console.log(createComment);
-    expect(commentsRepository.Comments.create).toHaveBeenCalledTimes(1);
-    expect(createComment).toEqual(createCommentSchema);
+    expect(commentsRepository.Comments.create)
+      .toHaveBeenCalledTimes(1);
+    expect(createComment).toEqual(createCommentResult);
+    expect(commentsRepository.Comments.create)
+      .toHaveBeenCalledWith(createCommentInsert);
   });
 
   test("updateComment Method Success Case", async () => {
@@ -86,26 +91,26 @@ describe("comments Repositories Layer Test", () => {
       comment: "hi",
     };
 
-    const updateCommentSchema = {
+    const updateCommentResult = {
       commentId: 1,
       userId: 1,
       comment: "hi",
     };
 
     commentsRepository.Comments.update = jest.fn(() => {
-      return updateCommentSchema;
+      return updateCommentResult;
     });
 
     const updateComment = await commentsRepository.updateComment(
       updateCommentInsert
     );
 
-    // console.log(updateCommentSchema);
+    // console.log(updateCommentResult);
     // console.log(updateCommentInsert);
     // console.log(updateComments);
 
     expect(commentsRepository.Comments.update).toHaveBeenCalledTimes(1);
-    expect(updateComment).toEqual(updateCommentSchema);
+    expect(updateComment).toEqual(updateCommentResult);
     expect(commentsRepository.Comments.update).toHaveBeenCalledWith(
       { comment: updateCommentInsert.comment },
       {
@@ -123,10 +128,10 @@ describe("comments Repositories Layer Test", () => {
       userId: 1
     };
 
-    const deleteCommentSchema = {};
+    const deleteCommentResult = {};
 
     commentsRepository.Comments.destroy = jest.fn(() => {
-      return deleteCommentSchema;
+      return deleteCommentResult;
     });
 
     const deleteComment = await commentsRepository.deleteComment(
@@ -134,9 +139,9 @@ describe("comments Repositories Layer Test", () => {
     );
     
     // console.log(deleteComment)  // {}
-    // console.log(deleteCommentSchema); // {}
+    // console.log(deleteCommentResult); // {}
     // console.log(deleteCommentInsert) // {commentId: 1,userId: 1};
-    expect(deleteComment).toEqual(deleteCommentSchema);
+    expect(deleteComment).toEqual(deleteCommentResult);
     expect(commentsRepository.Comments.destroy).toHaveBeenCalledTimes(1);
     expect(commentsRepository.Comments.destroy).toHaveBeenCalledWith(
       { where: { commentId: deleteCommentInsert.commentId, userId: deleteCommentInsert.userId } }
