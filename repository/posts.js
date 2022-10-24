@@ -1,9 +1,12 @@
 const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
+  constructor() {
+    this.Posts = Posts;
+  }
   createPost = async (name, title, content, userId, nickname) => {
     try {
-      await Posts.create({ name, title, content, userId, nickname });
+      await this.Posts.create({ name, title, content, userId, nickname });
       return;
     } catch (err) {
       throw new Error("게시글 생성에 실패했습니다");
