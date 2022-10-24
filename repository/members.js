@@ -1,8 +1,8 @@
 const { Members } = require("../models");
 
 class MembersRepository {
-  constructor(){
-    this.Members = Members
+  constructor() {
+    this.Members = Members;
   }
   createMember = async (id, nickname, password) => {
     const createMembersData = await this.Members.create({
@@ -24,12 +24,25 @@ class MembersRepository {
     return member;
   };
 
+  GetMember = async (userId, id) => {
+    const GetMember = await this.Members.findOne({ where: { userId, id } });
+    return GetMember;
+  };
+
   updateMember = async (userId, nickname, password) => {
     const updateMember = await this.Members.update(
       { nickname, password },
       { where: { userId } }
     );
     return updateMember;
+  };
+
+  changePassword = async (userId, password) => {
+    const changePassword = await this.Members.update(
+      { password },
+      { where: { userId } }
+    );
+    return changePassword
   };
 
   deleteMember = async (userId) => {
