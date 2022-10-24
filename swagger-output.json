@@ -5,21 +5,15 @@
     "description": "Description",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "52.79.218.57:3000",
   "basePath": "/",
   "schemes": ["http"],
   "paths": {
-    "/posts/{categoryId}": {
-      "post": {   
+    "/posts": {
+      "post": {
         "tags": ["posts"],
         "description": "게시글 생성",
         "parameters": [
-          {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-            },
           {
             "name": "body",
             "in": "body",
@@ -31,12 +25,16 @@
                 },
                 "content": {
                   "type": "string"
+                },
+                "name": {
+                  "type": "string"
                 }
               }
             },
             "example": {
               "title": "title",
-              "content": "content"
+              "content": "content",
+              "name": "카테고리 유형"
             }
           }
         ],
@@ -45,7 +43,7 @@
             "description": "게시글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "게시글 생성에 실패하였습니다"
+            "description": "..."
           }
         }
       },
@@ -54,65 +52,41 @@
         "description": "게시글 조회",
         "parameters": [
           {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "findAllPost": {
+                "postId": 1,
+                "name": "에러",
+                "nickname": "alstjq1826",
+                "title": "제목 입니다"
+              }
             }
+          }
         ],
         "responses": {
-          "201": {
-            "description": "게시글이 성공적으로 생성되었습니다."
-          },
           "401": {
-            "description": "게시글을 불러오지 못했습니다"
+            "description": "게시글 조회에 실패했습니다."
           }
         }
       }
     },
-    "/posts/{categoryId}/{postId}": {
+    "/posts/{postId}": {
       "get": {
         "tags": ["posts"],
         "description": "게시글 상세 조회",
         "parameters": [
-          {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-            },
-            {
-              "name": "postId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "게시글 조회에 성공했습니다"
-          },
-          "401": {
-            "description": "게시글 조회에 실패했습니다"
-          }
-        }
-      },
-      "patch": {
-        "tags": ["posts"],
-        "description": "게시글 수정",
-        "parameters": [
-          {
-            "name": "categoryId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-            },
-            {
-              "name": "postId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
@@ -128,8 +102,44 @@
               }
             },
             "example": {
-              "title": "title",
-              "content": "content"
+              "postId": 1,
+              "userId": 1,
+              "name": "카테고리 유형입니다",
+              "nickname": "alstjq1826",
+              "title": "제목 입니다",
+              "content": "내용 입니다",
+              "createdAt": "2022-10-22T13:20:56.000Z",
+              "updatedAt": "2022-10-22T13:20:56.000Z"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "게시글 상세조회에 실패했습니다"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["posts"],
+        "description": "게시글 수정",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": {
+              "title": "제목 수정",
+              "content": "내용 수정"
             }
           }
         ],
@@ -138,34 +148,20 @@
             "description": "게시글이 성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "게시글 수정에 실패하였습니다"
+            "description": "게시물 수정에 실패했습니다."
           }
         }
       },
       "delete": {
         "tags": ["posts"],
         "description": "게시글 삭제",
-        "parameters": [
-          
-          {
-          "name": "categoryId",
-          "in": "path",
-          "required": true,
-          "type": "string"
-          },
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        }
-      ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": "게시글이 성공적으로 삭제되었습니다."
           },
           "401": {
-            "description": "게시글 삭제에 실패하였습니다."
+            "description": "게시글 삭제에 실패했습니다."
           }
         }
       }
@@ -205,10 +201,10 @@
         ],
         "responses": {
           "201": {
-            "description": "회원가입 성공하였습니다."
+            "description": "회원가입 성공"
           },
           "401": {
-            "description": "회원가입 실패하였습니다."
+            "description": "..."
           }
         }
       }
@@ -258,7 +254,7 @@
             "type": "string",
             "schemes": {
               "properties": {
-                "nickname": {
+                "id": {
                   "type": "string"
                 },
                 "password": {
@@ -281,7 +277,7 @@
             "description": "성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "수정에 실패하였습니다."
+            "description": "..."
           }
         }
       },
@@ -290,7 +286,16 @@
         "description": "회원 탈퇴",
         "parameters": [
           {
-            
+            "name": "body",
+            "in": "body",
+            "type": "string",
+            "schemes": {
+              "properties": {
+                "userId": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -298,7 +303,7 @@
             "description": "성공적으로 탈퇴되었습니다."
           },
           "401": {
-            "description": "회원이 존재하지 않거나 탈퇴에 실패하였습니다."
+            "description": "..."
           }
         }
       }
@@ -309,12 +314,6 @@
         "description": "댓글 생성",
         "parameters": [
           {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "type": "string",
@@ -339,7 +338,7 @@
             "description": "댓글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "댓글을 생성하는데 실패하였습니다."
+            "description": "..."
           }
         }
       }
@@ -350,19 +349,6 @@
         "description": "댓글 생성",
         "parameters": [
           {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "commentNum",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-
-          {  
             "name": "body",
             "in": "body",
             "type": "string",
@@ -387,7 +373,7 @@
             "description": "댓글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "댓글을 생성하는데 실패하였습니다."
+            "description": "..."
           }
         }
       }
@@ -397,12 +383,6 @@
         "tags": ["comments"],
         "description": "댓글 수정",
         "parameters": [
-          {
-            "name": "commentId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
@@ -424,7 +404,7 @@
             "description": "댓글이 성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "댓글 수정에 실패하였습니다."
+            "description": "..."
           }
         }
       },
@@ -437,6 +417,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -444,7 +429,7 @@
             "description": "댓글이 성공적으로 삭제되었습니다."
           },
           "401": {
-            "description": "댓글 삭제에 실패하였습니다."
+            "description": "..."
           }
         }
       }
