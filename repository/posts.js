@@ -20,6 +20,7 @@ class PostsRepository {
   };
 
   findOnePost = async (postId, name) => {
+    console.log("repo: ", postId, name);
     try {
       const post = await Posts.findOne({ where: { postId, name } });
       return post;

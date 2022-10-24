@@ -35,7 +35,7 @@ class PostsController {
       const { postId } = req.params;
       const { name } = req.body;
       const findOnePOst = await this.postsService.findOnePost(postId, name);
-      res.status(200).json({ findOnePOst });
+      res.status(200).send(findOnePOst);
     } catch (err) {
       res.status(400).json({ message: "게시글 조회에 실패했습니다" });
     }

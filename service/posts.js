@@ -27,10 +27,7 @@ class PostsService {
   findOnePost = async (postId, name) => {
     try {
       const findOnePost = await this.postsRepository.findOnePost(postId, name);
-      const findAllComment = await this.commentsRepository.findComment(
-        postId,
-        name
-      );
+      const findAllComment = await this.commentsRepository.findComment(postId);
       const result = {
         findOnePost,
         findAllComment,

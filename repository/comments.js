@@ -19,10 +19,10 @@ class CommentsRepository {
     }
   };
 
-  findComment = async ({ postId }) => {
+  findComment = async (postId) => {
     try {
-      const findComment = await this.Comments.findAll({ where: { postId } });
-      return findComment;
+      const findAllComment = await this.Comments.findAll({ where: { postId } });
+      return findAllComment;
     } catch (err) {
       throw new Error("repository : 해당 게시글의 댓글을 찾지 못 했습니다.");
     }
