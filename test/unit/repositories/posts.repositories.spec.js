@@ -12,15 +12,37 @@ beforeEach(() => {
   res = httpMocks.createResponse();
   next = null;
 });
-describe("posts의 postsRepository 테스트", () => {
-  // createPost가 함수인지 확인
-  test("createPost가 함수인지 확인", () => {
+
+describe("Posts Repository Create", () => {
+  beforeEach(() => {
+    req.body = newPost;
+  });
+
+  it("create가 함수인지 확인", () => {
     expect(typeof postsRepository.createPost).toBe("function");
   });
 
-  // posts모델의 create가 정삭적으로 작동되는지 확인
-  test("Posts모델의 create가 정삭적으로 작동되는지 확인", async () => {
+  it("create가 정상적으로 호출되는지 확인", async () => {
     await postsRepository.createPost(req, res, next);
     expect(postsModel.create).toBeCalledWith(newPost);
+  });
+
+  it("sholud return 201 reponse code", async () => {
+    await postsRepository.createPost(req, res, next);
+    expect(res.statusCode).toBe(201);
+  });
+
+  it("sholud return json body in response", async () => {
+    postsModel.create.mockReturnValue(newPost);
+    await postsRepository.createPost(req, res, next);
+    expect(res._getJSONData()).tostrictEqual(newPost);
+  });
+
+  it("slhoud handle errors", async () => {
+    const errorMessage = { message: "description property missing" };
+    const rejectedPromise = Promise.reject(errorMessage);
+    postsModel.create.mockReturnValue(rejectedPromise);
+    await postsRepository.createPost(req, res, next);
+    expect(next).toBeCalledWith(errorMessage);
   });
 });

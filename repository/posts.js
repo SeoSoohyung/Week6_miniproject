@@ -1,12 +1,9 @@
 const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
-  constructor() {
-    this.Posts = Posts;
-  }
   createPost = async (name, title, content, userId, nickname) => {
     try {
-      await this.Posts.create({ name, title, content, userId, nickname });
+      await Posts.create({ name, title, content, userId, nickname });
       return;
     } catch (err) {
       throw new Error("게시글 생성에 실패했습니다");
@@ -15,7 +12,7 @@ class PostsRepository {
 
   findAllPost = async () => {
     try {
-      const findAllPost = await this.Posts.findAll();
+      const findAllPost = await Posts.findAll();
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
@@ -24,7 +21,7 @@ class PostsRepository {
 
   findOnePost = async (postId, name) => {
     try {
-      const post = await this.Posts.findOne({ where: { postId, name } });
+      const post = await Posts.findOne({ where: { postId, name } });
       return post;
     } catch (err) {
       throw new Error("게시글 조회에 실패했습니다");
@@ -33,7 +30,7 @@ class PostsRepository {
 
   updatepost = async (name, postId, title, content, userId) => {
     try {
-      const updatePost = await this.Posts.update(
+      const updatePost = await Posts.update(
         { title, content },
         { where: { name, postId, userId } }
       );
@@ -45,7 +42,7 @@ class PostsRepository {
 
   deletePost = async (name, postId, userId) => {
     try {
-      await this.Posts.destroy({
+      await Posts.destroy({
         where: { name, postId, userId },
       });
       return;

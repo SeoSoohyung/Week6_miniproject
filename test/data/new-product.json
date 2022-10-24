@@ -1,8 +1,7 @@
 {
-  "postId": 1,
-  "userId": 1,
-  "name": "코드 유형",
-  "nickname": "닉네임",
+  "name": "코드유형",
   "title": "제목",
-  "content": "내용"
+  "content": "내용",
+  "userId": 1,
+  "nickname": "alstjq1826"
 }
