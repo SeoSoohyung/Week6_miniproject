@@ -4,7 +4,7 @@ const router = express.Router();
 const PostsController = require("../controller/posts");
 const postsController = new PostsController();
 const authMiddleware = require("../middlewares/auth-middleware");
-
+// posts middleware
 router.post("/", authMiddleware, postsController.createPost);
 router.get("/", postsController.findAllPost);
 router.get("/:postId", postsController.findOnePost);
