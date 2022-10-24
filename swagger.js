@@ -5,13 +5,11 @@ const doc = {
     title: "My API",
     description: "Description",
   },
-  host: "localhost:3000",
+  host: "52.79.218.57:3000",
   schemes: ["http"],
 };
 
 const outputFile = "./swagger-output.json";
-const endpointsFiles = [
-  "./app.js"
-];
+const endpointsFiles = ["./app.js"];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
