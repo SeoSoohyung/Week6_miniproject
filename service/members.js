@@ -3,8 +3,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 class MembersService {
-  membersRepository = new MembersRepository();
-
+  constructor(){
+  this.membersRepository = new MembersRepository();
+  }
   createMember = async (id, nickname, password) => {
     const existsId = await this.membersRepository.findMember(id);
     if (existsId) {
@@ -42,7 +43,6 @@ class MembersService {
       throw { message: "닉네임이 이미 존재합니다" };
     }
     await this.membersRepository.updateMember(userId, nickname, password);
-
     return;
   };
 
