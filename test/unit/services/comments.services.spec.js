@@ -8,6 +8,7 @@ const mockCommentsRepository = () => ({
 
 describe("comments Services Layer Test", () => {
   let commentsService = new CommentsService();
+  commentsService.commentsRepository = mockCommentsRepository();
 
   beforeEach(() => {
     // 모든 Mock을 초기화합니다.
@@ -79,17 +80,17 @@ describe("comments Services Layer Test", () => {
     expect(
       commentsService.commentsRepository.updateComment
     ).toHaveBeenCalledTimes(1);
-    expect(
-      commentsService.commentsRepository.updateComment
-    ).toHaveBeenCalledWith(
-      // { comment: updateCommentInsertByservice.comment }
-      // {
-      //   where: {
-      //     userId: updateCommentInsertByservice.userId,
-      //     commentId: updateCommentInsertByservice.commentId,
-      //   },
-      // }
-    );
+    // expect(
+    //   commentsService.commentsRepository.updateComment
+    // ).toHaveBeenCalledWith(
+    //   // { comment: updateCommentInsertByservice.comment }
+    //   // {
+    //   //   where: {
+    //   //     userId: updateCommentInsertByservice.userId,
+    //   //     commentId: updateCommentInsertByservice.commentId,
+    //   //   },
+    //   // }
+    // );
   });
 
   test("deleteComment Method Success Case", async () => {
