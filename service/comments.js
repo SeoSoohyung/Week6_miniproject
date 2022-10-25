@@ -5,14 +5,12 @@ class CommentsService {
     this.commentsRepository = new CommentsRepository();
   };
   
-  createComment = async ( { postId, commentNum, userId, comment, level } ) => {
+  createComment = async ( { postId, userId, comment } ) => {
   try {
     const createComment = await this.commentsRepository.createComment( {
       postId,
-      commentNum,
       userId,
-      comment,
-      level
+      comment
   } );
     return createComment;
   } catch (err) {
