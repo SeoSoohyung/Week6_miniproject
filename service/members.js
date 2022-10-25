@@ -42,7 +42,7 @@ class MembersService {
     if (!member || !validPassword) {
       throw { message: "아이디 또는 비밀번호가 일치하지 않습니다." };
     }
-    return { token: jwt.sign({ userId: member.userId }, "week6-mini-project") };
+    return { token: jwt.sign({ userId: member.userId, id:member.id, nickname:member.nickname}, "week6-mini-project") };
   };
 
   updateMember = async (userId, nickname, password) => {
