@@ -7,15 +7,13 @@ class CommentsController {
 
   createComment = async (req, res, next) => {
     try {
-      const { postId, commentNum } = req.params;
+      const { postId } = req.params;
       const { userId } = res.locals.user;
-      const { comment, level } = req.body;
+      const { comment} = req.body;
       await this.commentsService.createComment({
         postId,
-        commentNum,
         userId,
         comment,
-        level,
       });
       res.status(201).json(" message: 댓글 생성에 성공했습니다. ");
     } catch (error) {
