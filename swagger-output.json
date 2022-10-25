@@ -266,7 +266,7 @@
               }
             },
             "example": {
-              "id": "아이디",
+              "nickname": "아이디",
               "password": "비밀번호",
               "confirm": "비밀번호 확인"
             }
@@ -308,6 +308,38 @@
         }
       }
     },
+    "/members/login/{id}": {
+    "get": {
+      "tags": ["members"],
+      "description": "회원 정보 조회",
+      "parameters": [
+        {
+          "name": "params",
+          "in": "params",
+          "type": "string",
+          "schemes": {
+            "properties": {
+              "id": {
+                "type": "string"
+              }              
+            }
+          },
+          "example": {
+            "id": "아이디",
+            "nickname": "닉네임"            
+          }
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "성공적으로 조회하였습니다."
+        },
+        "401": {
+          "description": "..."
+        }
+      }
+    }
+  },
     "/comments/{postId}": {
       "post": {
         "tags": ["comments"],
