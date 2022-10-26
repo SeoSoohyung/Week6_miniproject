@@ -16,18 +16,21 @@ class PostsService {
     return;
   };
 
-  findAllPost = async (name) => {
+  findAllPost = async (categoryId) => {
     try {
-      const findAllPost = await this.postsRepository.findAllPost(name);
+      const findAllPost = await this.postsRepository.findAllPost(categoryId);
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
     }
   };
 
-  findOnePost = async (postId, name) => {
+  findOnePost = async (postId, categoryId) => {
     try {
-      const findOnePost = await this.postsRepository.findOnePost(postId, name);
+      const findOnePost = await this.postsRepository.findOnePost(
+        postId,
+        categoryId
+      );
       const findAllComment = await this.commentsRepository.findComment(postId);
       const result = {
         findOnePost,
