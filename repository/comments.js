@@ -10,7 +10,7 @@ class CommentsRepository {
       });
       return createComment;
     } catch (err) {
-      throw new Error("댓글 생성 실패");
+      throw new Error("댓글 생성 실패 Repo");
     }
   };
 

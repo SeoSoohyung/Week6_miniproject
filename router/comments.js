@@ -16,7 +16,7 @@ const authMiddleware = require("../middlewares/auth-middleware");
 //   authMiddleware,
 //   commentsController.deleteComment
 // );
-
+console.log(authMiddleware);
 router.post("/:postId", authMiddleware, commentsController.createComment);
 // router.post(
 //   "/:postId/:commentNum",
