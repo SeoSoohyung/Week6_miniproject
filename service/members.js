@@ -38,8 +38,11 @@ class MembersService {
 
   findMember = async (id, password) => {
     const member = await this.membersRepository.findMember(id);
+    if (!member) {
+      throw { message: "아이디 또는 비밀번호가 일치하지 않습니다." };
+    }
     const validPassword = await bcrypt.compare(password, member.password);
-    if (!member || !validPassword) {
+    if (!validPassword) {
       throw { message: "아이디 또는 비밀번호가 일치하지 않습니다." };
     }
     return { token: jwt.sign({ userId: member.userId, id:member.id, nickname:member.nickname}, "week6-mini-project") };
