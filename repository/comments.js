@@ -1,20 +1,17 @@
 const { Comments } = require("../models");
 
 class CommentsRepository {
-  constructor() {
-    this.Comments = Comments;
-  }
   createComment = async (postId, userId, comment) => {
-    try {
-      const createComment = await this.Comments.create({
-        postId,
-        userId,
-        comment,
-      });
-      return createComment;
-    } catch (err) {
-      throw new Error("repository : 댓글을 생성 할 수 없습니다.");
-    }
+    // try {
+    const createComment = await Comments.create({
+      postId,
+      userId,
+      comment,
+    });
+    return createComment;
+    // } catch (err) {
+    throw new Error("repository : 댓글을 생성 할 수 없습니다.");
+    // }
   };
 
   findComment = async (postId) => {

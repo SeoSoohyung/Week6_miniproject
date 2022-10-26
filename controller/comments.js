@@ -1,24 +1,21 @@
 const CommentsService = require("../service/comments");
 
 class CommentsController {
-  constructor() {
-    this.commentsService = new CommentsService();
-  }
-
+  commentsService = new CommentsService();
   createComment = async (req, res, next) => {
-    try {
-      const { postId } = req.params;
-      const { userId } = res.locals.user;
-      const { comment } = req.body;
-      await this.commentsService.createComment({
-        postId,
-        userId,
-        comment,
-      });
-      res.status(201).json(" message: 댓글 생성에 성공했습니다. ");
-    } catch (error) {
-      res.status(400).json("message : error");
-    }
+    // try {
+    const { postId } = req.params;
+    const { userId } = res.locals.user;
+    const { comment } = req.body;
+    await this.commentsService.createComment({
+      postId,
+      userId,
+      comment,
+    });
+    res.status(201).json(" message: 댓글 생성에 성공했습니다. ");
+    // } catch (error) {
+    res.status(400).json("message : error");
+    // }
   };
 
   updateComment = async (req, res, next) => {
