@@ -16,9 +16,9 @@ class PostsService {
     return;
   };
 
-  findAllPost = async (categoryId) => {
+  findAllPost = async () => {
     try {
-      const findAllPost = await this.postsRepository.findAllPost(categoryId);
+      const findAllPost = await this.postsRepository.findAllPost();
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");

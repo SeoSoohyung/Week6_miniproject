@@ -6,7 +6,7 @@ const postsController = new PostsController();
 const authMiddleware = require("../middlewares/auth-middleware");
 // posts middleware
 router.post("/", authMiddleware, postsController.createPost);
-router.get("/:categoryId", postsController.findAllPost);
+router.get("/", postsController.findAllPost);
 router.get("/:categoryId/:postId", postsController.findOnePost);
 router.patch("/:postId", authMiddleware, postsController.updatePost);
 router.delete("/:postId", authMiddleware, postsController.deletePost);
