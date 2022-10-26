@@ -13,7 +13,7 @@ class CommentsRepository {
       });
       return createComment;
     } catch (err) {
-      throw new Error("repository : 댓글을 생성 할 수 없습니다.");
+      throw new Error("댓글 생성 실패");
     }
   };
 
@@ -22,7 +22,7 @@ class CommentsRepository {
       const findAllComment = await this.Comments.findAll({ where: { postId } });
       return findAllComment;
     } catch (err) {
-      throw new Error("repository : 해당 게시글의 댓글을 찾지 못 했습니다.");
+      throw new Error("댓글 조회 실패");
     }
   };
 
@@ -34,7 +34,7 @@ class CommentsRepository {
       );
       return updateComment;
     } catch (err) {
-      throw new Error("repository : 댓글이 없거나 업데이트 할 수 없습니다.");
+      throw new Error("댓글 수정 실패");
     }
   };
 
@@ -45,7 +45,7 @@ class CommentsRepository {
       });
       return deleteComment;
     } catch (err) {
-      throw new Error("repository : 해당 댓글이 없거나 삭제 할 수 없습니다.");
+      throw new Error("댓글 삭제 실패");
     }
   };
 }
