@@ -23,7 +23,8 @@ class PostsController {
 
   findAllPost = async (req, res, next) => {
     try {
-      const findAllPost = await this.postsService.findAllPost();
+      const { name } = req.body;
+      const findAllPost = await this.postsService.findAllPost(name);
       res.status(200).json({ findAllPost });
     } catch (err) {
       res.status(400).json({ message: "게시글을 불러오지 못했습니다" });

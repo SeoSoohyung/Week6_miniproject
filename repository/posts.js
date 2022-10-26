@@ -13,9 +13,9 @@ class PostsRepository {
     }
   };
 
-  findAllPost = async () => {
+  findAllPost = async (name) => {
     try {
-      const findAllPost = await Posts.findAll();
+      const findAllPost = await Posts.findAll({ where: { name } });
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
@@ -23,7 +23,6 @@ class PostsRepository {
   };
 
   findOnePost = async (postId, name) => {
-    console.log("repo: ", postId, name);
     try {
       const post = await Posts.findOne({ where: { postId, name } });
       return post;

@@ -1,7 +1,8 @@
 const PostsRepository = require("../repository/posts");
 const CommentsRepository = require("../repository/comments");
-
+const CategoriesRepository = require("../repository/categories");
 class PostsService {
+  categoriesRepository = new CategoriesRepository();
   postsRepository = new PostsRepository();
   commentsRepository = new CommentsRepository();
   createPost = async (name, title, content, userId, nickname) => {
@@ -15,9 +16,9 @@ class PostsService {
     return;
   };
 
-  findAllPost = async () => {
+  findAllPost = async (name) => {
     try {
-      const findAllPost = await this.postsRepository.findAllPost();
+      const findAllPost = await this.postsRepository.findAllPost(name);
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
