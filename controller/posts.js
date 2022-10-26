@@ -5,7 +5,7 @@ class PostsController {
 
   createPost = async (req, res, next) => {
     try {
-      const { name } = req.body;
+      const { name } = req.params;
       const { title, content } = req.body;
       const { userId, nickname } = res.locals.user;
       await this.postsService.createPost(
@@ -23,8 +23,8 @@ class PostsController {
 
   findAllPost = async (req, res, next) => {
     try {
-      const { name } = req.body;
-      const findAllPost = await this.postsService.findAllPost(name);
+      const { categoryId } = req.params;
+      const findAllPost = await this.postsService.findAllPost(categoryId);
       res.status(200).json({ findAllPost });
     } catch (err) {
       res.status(400).json({ message: "게시글을 불러오지 못했습니다" });
@@ -33,9 +33,11 @@ class PostsController {
 
   findOnePost = async (req, res, next) => {
     try {
-      const { postId } = req.params;
-      const { name } = req.body;
-      const findOnePOst = await this.postsService.findOnePost(postId, name);
+      const { postId, categoryId } = req.params;
+      const findOnePOst = await this.postsService.findOnePost(
+        postId,
+        categoryId
+      );
       res.status(200).send(findOnePOst);
     } catch (err) {
       res.status(400).json({ message: "게시글 조회에 실패했습니다" });

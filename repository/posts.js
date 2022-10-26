@@ -13,18 +13,18 @@ class PostsRepository {
     }
   };
 
-  findAllPost = async (name) => {
+  findAllPost = async (categoryId) => {
     try {
-      const findAllPost = await Posts.findAll({ where: { name } });
+      const findAllPost = await Posts.findAll({ where: { name: categoryId } });
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
     }
   };
 
-  findOnePost = async (postId, name) => {
+  findOnePost = async (postId, categoryId) => {
     try {
-      const post = await Posts.findOne({ where: { postId, name } });
+      const post = await Posts.findOne({ where: { postId, name: categoryId } });
       return post;
     } catch (err) {
       throw new Error("게시글 조회에 실패했습니다");
