@@ -4,12 +4,12 @@ class CommentsRepository {
   constructor() {
     this.Comments = Comments;
   }
-  createComment = async ({ postId, userId, comment }) => {
+  createComment = async (postId, userId, comment) => {
     try {
       const createComment = await this.Comments.create({
         postId,
         userId,
-        comment
+        comment,
       });
       return createComment;
     } catch (err) {
@@ -26,7 +26,7 @@ class CommentsRepository {
     }
   };
 
-  updateComment = async ({ userId, comment, commentId }) => {
+  updateComment = async (userId, comment, commentId) => {
     try {
       const updateComment = await this.Comments.update(
         { comment },
@@ -38,7 +38,7 @@ class CommentsRepository {
     }
   };
 
-  deleteComment = async ({ commentId, userId }) => {
+  deleteComment = async (commentId, userId) => {
     try {
       const deleteComment = await this.Comments.destroy({
         where: { commentId, userId },

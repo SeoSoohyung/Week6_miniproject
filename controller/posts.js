@@ -5,8 +5,7 @@ class PostsController {
 
   createPost = async (req, res, next) => {
     try {
-      const { name } = req.params;
-      const { title, content } = req.body;
+      const { title, content, name } = req.body;
       const { userId, nickname } = res.locals.user;
       await this.postsService.createPost(
         name,
@@ -23,8 +22,7 @@ class PostsController {
 
   findAllPost = async (req, res, next) => {
     try {
-      const { categoryId } = req.params;
-      const findAllPost = await this.postsService.findAllPost(categoryId);
+      const findAllPost = await this.postsService.findAllPost();
       res.status(200).json({ findAllPost });
     } catch (err) {
       res.status(400).json({ message: "게시글을 불러오지 못했습니다" });

@@ -6,16 +6,22 @@ class PostsRepository {
   }
   createPost = async (name, title, content, userId, nickname) => {
     try {
-      await this.Posts.create({ name, title, content, userId, nickname });
+      await this.Posts.create({
+        name,
+        title,
+        content,
+        userId,
+        nickname,
+      });
       return;
     } catch (err) {
       throw new Error("게시글 생성에 실패했습니다");
     }
   };
 
-  findAllPost = async (categoryId) => {
+  findAllPost = async () => {
     try {
-      const findAllPost = await Posts.findAll({ where: { name: categoryId } });
+      const findAllPost = await Posts.findAll();
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
