@@ -18,7 +18,7 @@ class MembersController {
       await this.membersService.createMember(id, nickname, password, confirm);
       res.status(201).json({ message: "회원가입이 완료되었습니다." });
     } catch (e) {
-      res.status(400).json({ message: e.message });
+      res.status(409).json({ message: e.message });
     }
   };
 
@@ -30,10 +30,10 @@ class MembersController {
         password
       );
       res
-        .status(200)
+        .status(201)
         .json({ data: LoginMemberData, message: "로그인 되었습니다." });
     } catch (e) {
-      res.status(400).json({ message: e.message });
+      res.status(401).json({ message: e.message });
     }
   };
 
@@ -63,7 +63,7 @@ class MembersController {
         .status(200)
         .json({ data: UpdateMember, message: "수정을 완료하였습니다." });
     } catch (e) {
-      res.status(400).json({ message: e.message });
+      res.status(403).json({ message: e.message });
     }
   };
 
@@ -74,7 +74,7 @@ class MembersController {
 
       res.status(200).json({ message: "삭제를 완료하였습니다." });
     } catch (e) {
-      res.status(400).json({ message: e.message });
+      res.status(403).json({ message: e.message });
     }
   };
 }
