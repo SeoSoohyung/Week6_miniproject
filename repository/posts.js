@@ -28,10 +28,10 @@ class PostsRepository {
     }
   };
 
-  findOnePost = async (postId, categoryId) => {
+  findOnePost = async (postId) => {
     try {
-      const post = await Posts.findOne({ where: { postId, name: categoryId } });
-      return post;
+      const findOnePost = await Posts.findOne({ where: { postId } });
+      return findOnePost;
     } catch (err) {
       throw new Error("게시글 조회에 실패했습니다");
     }

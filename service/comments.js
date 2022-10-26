@@ -3,40 +3,40 @@ const CommentsRepository = require("../repository/comments");
 class CommentsService {
   commentsRepository = new CommentsRepository();
   createComment = async (postId, userId, comment) => {
-    // try {
-    const createComment = await this.commentsRepository.createComment({
-      postId,
-      userId,
-      comment,
-    });
-    return createComment;
-    // } catch (err) {
-    throw new Error("service : 게시글 생성에 실패했습니다");
-    // }
+    try {
+      const createComment = await this.commentsRepository.createComment(
+        postId,
+        userId,
+        comment
+      );
+      return createComment;
+    } catch (err) {
+      throw new Error("댓글 생성 실패");
+    }
   };
 
   updateComment = async (userId, comment, commentId) => {
     try {
-      const updateComment = await this.commentsRepository.updateComment({
+      const updateComment = await this.commentsRepository.updateComment(
         userId,
         comment,
-        commentId,
-      });
+        commentId
+      );
       return updateComment;
     } catch (err) {
-      throw new Error("service : 게시글 생성에 실패했습니다");
+      throw new Error("댓글 수정 실패");
     }
   };
 
   deleteComment = async (commentId, userId) => {
     try {
-      const deleteComment = await this.commentsRepository.deleteComment({
+      const deleteComment = await this.commentsRepository.deleteComment(
         commentId,
-        userId,
-      });
+        userId
+      );
       return deleteComment;
     } catch (err) {
-      throw new Error("service : 게시글 생성에 실패했습니다");
+      throw new Error("댓글 삭제 실패");
     }
   };
 }

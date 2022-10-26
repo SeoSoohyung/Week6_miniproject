@@ -2,47 +2,47 @@ const { Comments } = require("../models");
 
 class CommentsRepository {
   createComment = async (postId, userId, comment) => {
-    // try {
-    const createComment = await Comments.create({
-      postId,
-      userId,
-      comment,
-    });
-    return createComment;
-    // } catch (err) {
-    throw new Error("repository : 댓글을 생성 할 수 없습니다.");
-    // }
+    try {
+      const createComment = await Comments.create({
+        postId,
+        userId,
+        comment,
+      });
+      return createComment;
+    } catch (err) {
+      throw new Error("댓글 생성 실패");
+    }
   };
 
   findComment = async (postId) => {
-    try {
-      const findAllComment = await this.Comments.findAll({ where: { postId } });
-      return findAllComment;
-    } catch (err) {
-      throw new Error("repository : 해당 게시글의 댓글을 찾지 못 했습니다.");
-    }
+    // try {
+    const findAllComment = await Comments.findAll({ where: { postId } });
+    return findAllComment;
+    // } catch (err) {
+    //   throw new Error("댓글 조회 실패");
+    // }
   };
 
   updateComment = async (userId, comment, commentId) => {
     try {
-      const updateComment = await this.Comments.update(
+      const updateComment = await Comments.update(
         { comment },
         { where: { userId, commentId } }
       );
       return updateComment;
     } catch (err) {
-      throw new Error("repository : 댓글이 없거나 업데이트 할 수 없습니다.");
+      throw new Error("댓글 수정 실패");
     }
   };
 
   deleteComment = async (commentId, userId) => {
     try {
-      const deleteComment = await this.Comments.destroy({
+      const deleteComment = await Comments.destroy({
         where: { commentId, userId },
       });
       return deleteComment;
     } catch (err) {
-      throw new Error("repository : 해당 댓글이 없거나 삭제 할 수 없습니다.");
+      throw new Error("댓글 삭제 실패");
     }
   };
 }
