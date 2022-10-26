@@ -1,18 +1,21 @@
 const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
+  constructor() {
+    this.Posts = Posts;
+  }
   createPost = async (name, title, content, userId, nickname) => {
     try {
-      await Posts.create({ name, title, content, userId, nickname });
+      await this.Posts.create({ name, title, content, userId, nickname });
       return;
     } catch (err) {
       throw new Error("게시글 생성에 실패했습니다");
     }
   };
 
-  findAllPost = async () => {
+  findAllPost = async (name) => {
     try {
-      const findAllPost = await Posts.findAll();
+      const findAllPost = await Posts.findAll({ where: { name } });
       return findAllPost;
     } catch (err) {
       throw new Error("게시글 목록을 불러오지 못했습니다");
@@ -20,7 +23,6 @@ class PostsRepository {
   };
 
   findOnePost = async (postId, name) => {
-    console.log("repo: ", postId, name);
     try {
       const post = await Posts.findOne({ where: { postId, name } });
       return post;
