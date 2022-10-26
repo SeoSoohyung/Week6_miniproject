@@ -12,10 +12,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      commentNum: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -23,13 +19,6 @@ module.exports = {
       comment: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      level: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-          is: /^[1-2]+$/,
-        },
       },
       createdAt: {
         allowNull: false,

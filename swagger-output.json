@@ -43,7 +43,7 @@
             "description": "게시글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "게시글 생성에 실패하였습니다."
           }
         }
       },
@@ -204,7 +204,7 @@
             "description": "회원가입 성공"
           },
           "401": {
-            "description": "..."
+            "description": "회원가입 실패"
           }
         }
       }
@@ -236,7 +236,7 @@
         ],
         "responses": {
           "200": {
-            "description": "token: ...."
+            "description": "로그인 완료"
           },
           "401": {
             "description": "닉네임 또는 비밀번호가 틀립니다."
@@ -277,7 +277,7 @@
             "description": "성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "정보 수정에 실패하였습니다"
           }
         }
       },
@@ -303,7 +303,7 @@
             "description": "성공적으로 탈퇴되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "Error"
           }
         }
       }
@@ -335,7 +335,7 @@
           "description": "성공적으로 조회하였습니다."
         },
         "401": {
-          "description": "..."
+          "description": "조회에 실패하였습니다."
         }
       }
     }
@@ -370,42 +370,7 @@
             "description": "댓글이 성공적으로 생성되었습니다."
           },
           "401": {
-            "description": "..."
-          }
-        }
-      }
-    },
-    "/comments/{postId}/{commentNum}": {
-      "post": {
-        "tags": ["comments"],
-        "description": "댓글 생성",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "type": "string",
-            "schemes": {
-              "properties": {
-                "level": {
-                  "type": "integer"
-                },
-                "comment": {
-                  "type": "string"
-                }
-              }
-            },
-            "example": {
-              "level": "1",
-              "comment": "댓글"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "댓글이 성공적으로 생성되었습니다."
-          },
-          "401": {
-            "description": "..."
+            "description": "댓글 생성에 실패하였습니다."
           }
         }
       }
@@ -436,7 +401,7 @@
             "description": "댓글이 성공적으로 수정되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "댓글 수정에 실패하였습니다."
           }
         }
       },
@@ -461,7 +426,7 @@
             "description": "댓글이 성공적으로 삭제되었습니다."
           },
           "401": {
-            "description": "..."
+            "description": "댓글 삭제에 실패하였습니다."
           }
         }
       }
