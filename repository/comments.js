@@ -1,12 +1,9 @@
 const { Comments } = require("../models");
 
 class CommentsRepository {
-  constructor() {
-    this.Comments = Comments;
-  }
   createComment = async (postId, userId, comment) => {
     try {
-      const createComment = await this.Comments.create({
+      const createComment = await Comments.create({
         postId,
         userId,
         comment,
@@ -18,17 +15,17 @@ class CommentsRepository {
   };
 
   findComment = async (postId) => {
-    try {
-      const findAllComment = await this.Comments.findAll({ where: { postId } });
-      return findAllComment;
-    } catch (err) {
-      throw new Error("댓글 조회 실패");
-    }
+    // try {
+    const findAllComment = await Comments.findAll({ where: { postId } });
+    return findAllComment;
+    // } catch (err) {
+    //   throw new Error("댓글 조회 실패");
+    // }
   };
 
   updateComment = async (userId, comment, commentId) => {
     try {
-      const updateComment = await this.Comments.update(
+      const updateComment = await Comments.update(
         { comment },
         { where: { userId, commentId } }
       );
@@ -40,7 +37,7 @@ class CommentsRepository {
 
   deleteComment = async (commentId, userId) => {
     try {
-      const deleteComment = await this.Comments.destroy({
+      const deleteComment = await Comments.destroy({
         where: { commentId, userId },
       });
       return deleteComment;

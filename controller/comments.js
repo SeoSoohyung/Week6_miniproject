@@ -1,10 +1,7 @@
 const CommentsService = require("../service/comments");
 
 class CommentsController {
-  constructor() {
-    this.commentsService = new CommentsService();
-  }
-
+  commentsService = new CommentsService();
   createComment = async (req, res, next) => {
     try {
       const { postId } = req.params;

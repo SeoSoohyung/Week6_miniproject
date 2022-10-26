@@ -1,16 +1,13 @@
 const CommentsRepository = require("../repository/comments");
 
 class CommentsService {
-  constructor() {
-    this.commentsRepository = new CommentsRepository();
-  }
-
+  commentsRepository = new CommentsRepository();
   createComment = async (postId, userId, comment) => {
     try {
       const createComment = await this.commentsRepository.createComment(
         postId,
         userId,
-        comment,
+        comment
       );
       return createComment;
     } catch (err) {
@@ -23,7 +20,7 @@ class CommentsService {
       const updateComment = await this.commentsRepository.updateComment(
         userId,
         comment,
-        commentId,
+        commentId
       );
       return updateComment;
     } catch (err) {
@@ -35,7 +32,7 @@ class CommentsService {
     try {
       const deleteComment = await this.commentsRepository.deleteComment(
         commentId,
-        userId,
+        userId
       );
       return deleteComment;
     } catch (err) {
