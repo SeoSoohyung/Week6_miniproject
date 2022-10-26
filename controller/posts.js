@@ -16,6 +16,7 @@ class PostsController {
       );
       res.status(201).json({ message: "게시글이 생성되었습니다" });
     } catch (err) {
+      console.log(err);
       res.status(400).json({ message: "게시글 생성에 실패하였습니다" });
     }
   };
