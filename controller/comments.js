@@ -21,9 +21,9 @@ class CommentsController {
 
   updateComment = async (req, res, next) => {
     try {
+      const { commentId } = req.params;
       const { comment, postId } = req.body;
       const { userId } = res.locals.user;
-      const { commentId } = req.params;
       const updateComment = await this.commentsService.updateComment(
         userId,
         comment,
