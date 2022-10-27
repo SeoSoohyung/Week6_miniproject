@@ -5,18 +5,15 @@ class CommentsController {
   createComment = async (req, res, next) => {
     try {
       const { postId } = req.params;
-      console.log(postId);
       const { userId } = res.locals.user;
-      console.log(userId);
       const { comment } = req.body;
-      console.log(comment);
-      const findComment = await this.commentsService.createComment(
+      const createComment = await this.commentsService.createComment(
         postId,
         userId,
         comment
       );
 
-      res.status(201).send(findComment);
+      res.status(201).send(createComment);
     } catch (error) {
       res.status(400).json({ message: "댓글 생성 실패 cont" });
     }
@@ -24,25 +21,35 @@ class CommentsController {
 
   updateComment = async (req, res, next) => {
     try {
-      const { comment } = req.body;
+      const { comment, postId } = req.body;
       const { userId } = res.locals.user;
       const { commentId } = req.params;
-      await this.commentsService.updateComment(userId, comment, commentId);
-      res.status(201).json({ message: "댓글이 수정되었습니다." });
+      const updateComment = await this.commentsService.updateComment(
+        userId,
+        comment,
+        commentId,
+        postId
+      );
+      res.status(201).send(updateComment);
     } catch (error) {
       res.status(400).json({ message: "댓글 수정 실패" });
     }
   };
 
   deleteComment = async (req, res, next) => {
-    try {
-      const { userId } = res.locals.user;
-      const { commentId } = req.params;
-      await this.commentsService.deleteComment(commentId, userId);
-      res.status(201).json({ message: "댓글이 삭제되었습니다." });
-    } catch (error) {
-      res.status(400).json({ message: "댓글 삭제 실패" });
-    }
+    // try {
+    const { userId } = res.locals.user;
+    const { commentId } = req.params;
+    const { postId } = req.body;
+    const deleteComment = await this.commentsService.deleteComment(
+      commentId,
+      userId,
+      postId
+    );
+    res.status(201).send(deleteComment);
+    // } catch (error) {
+    //   res.status(400).json({ message: "댓글 삭제 실패" });
+    // }
   };
 }
 
