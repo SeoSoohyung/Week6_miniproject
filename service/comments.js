@@ -4,12 +4,9 @@ class CommentsService {
   commentsRepository = new CommentsRepository();
   createComment = async (postId, userId, comment) => {
     try {
-      const createComment = await this.commentsRepository.createComment(
-        postId,
-        userId,
-        comment
-      );
-      return createComment;
+      await this.commentsRepository.createComment(postId, userId, comment);
+      const findComment = await this.commentsRepository.findComment(postId);
+      return findComment;
     } catch (err) {
       throw new Error("댓글 생성 실패 serv");
     }
