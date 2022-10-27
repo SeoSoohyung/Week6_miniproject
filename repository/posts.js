@@ -1,12 +1,9 @@
 const { Posts, sequelize } = require("../models");
 
 class PostsRepository {
-  constructor() {
-    this.Posts = Posts;
-  }
   createPost = async (name, title, content, userId, nickname) => {
     try {
-      await this.Posts.create({
+      await Posts.create({
         name,
         title,
         content,
