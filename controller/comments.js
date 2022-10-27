@@ -10,8 +10,13 @@ class CommentsController {
       console.log(userId);
       const { comment } = req.body;
       console.log(comment);
-      await this.commentsService.createComment(postId, userId, comment);
-      res.status(201).json({ message: "댓글 생성에 성공cont" });
+      const findComment = await this.commentsService.createComment(
+        postId,
+        userId,
+        comment
+      );
+
+      res.status(201).send(findComment);
     } catch (error) {
       res.status(400).json({ message: "댓글 생성 실패 cont" });
     }
