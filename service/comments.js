@@ -12,26 +12,20 @@ class CommentsService {
     }
   };
 
-  updateComment = async (userId, comment, commentId) => {
+  updateComment = async (userId, comment, commentId, postId) => {
     try {
-      const updateComment = await this.commentsRepository.updateComment(
-        userId,
-        comment,
-        commentId
-      );
-      return updateComment;
+      await this.commentsRepository.updateComment(userId, comment, commentId);
+      const findComment = await this.commentsRepository.findComment(postId);
+      return findComment;
     } catch (err) {
       throw new Error("댓글 수정 실패");
     }
   };
-
-  deleteComment = async (commentId, userId) => {
+  deleteComment = async (commentId, userId, postId) => {
     try {
-      const deleteComment = await this.commentsRepository.deleteComment(
-        commentId,
-        userId
-      );
-      return deleteComment;
+      await this.commentsRepository.deleteComment(commentId, userId);
+      const findComment = await this.commentsRepository.findComment(postId);
+      return findComment;
     } catch (err) {
       throw new Error("댓글 삭제 실패");
     }
